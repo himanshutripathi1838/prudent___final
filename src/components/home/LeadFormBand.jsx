@@ -84,59 +84,59 @@ export default function LeadFormBand() {
               <form onSubmit={handleSubmit} className="space-y-3.5 font-sans">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   <div>
-                    <label className="block text-[9.5px] font-mono font-bold text-slate-400 mb-1 uppercase">First Name *</label>
+                    <label className="block text-[9.5px] font-mono font-bold text-slate-700 dark:text-slate-400 mb-1 uppercase">First Name *</label>
                     <input
                       type="text"
                       required
                       value={formData.firstName}
                       onChange={(e) => setFormData({ ...formData, firstName: e.target.value })}
                       placeholder="Rajesh"
-                      className="w-full px-3.5 py-2.5 rounded-xl bg-[#0E1522] border border-slate-800 text-white text-xs focus:outline-none focus:border-[#00E5FF]"
+                      className="w-full px-3.5 py-2.5 rounded-xl bg-white dark:bg-[#0E1522] border border-slate-300 dark:border-slate-800 text-slate-900 dark:text-white text-xs focus:outline-none focus:border-[#0284C7] dark:focus:border-[#00E5FF] shadow-sm"
                     />
                   </div>
                   <div>
-                    <label className="block text-[9.5px] font-mono font-bold text-slate-400 mb-1 uppercase">Last Name *</label>
+                    <label className="block text-[9.5px] font-mono font-bold text-slate-700 dark:text-slate-400 mb-1 uppercase">Last Name *</label>
                     <input
                       type="text"
                       required
                       value={formData.lastName}
                       onChange={(e) => setFormData({ ...formData, lastName: e.target.value })}
                       placeholder="Kumar"
-                      className="w-full px-3.5 py-2.5 rounded-xl bg-[#0E1522] border border-slate-800 text-white text-xs focus:outline-none focus:border-[#00E5FF]"
+                      className="w-full px-3.5 py-2.5 rounded-xl bg-white dark:bg-[#0E1522] border border-slate-300 dark:border-slate-800 text-slate-900 dark:text-white text-xs focus:outline-none focus:border-[#0284C7] dark:focus:border-[#00E5FF] shadow-sm"
                     />
                   </div>
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   <div>
-                    <label className="block text-[9.5px] font-mono font-bold text-slate-400 mb-1 uppercase">Email Address *</label>
+                    <label className="block text-[9.5px] font-mono font-bold text-slate-700 dark:text-slate-400 mb-1 uppercase">Email Address *</label>
                     <input
                       type="email"
                       required
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                       placeholder="rajesh@railways.gov.in"
-                      className="w-full px-3.5 py-2.5 rounded-xl bg-[#0E1522] border border-slate-800 text-white text-xs focus:outline-none focus:border-[#00E5FF]"
+                      className="w-full px-3.5 py-2.5 rounded-xl bg-white dark:bg-[#0E1522] border border-slate-300 dark:border-slate-800 text-slate-900 dark:text-white text-xs focus:outline-none focus:border-[#0284C7] dark:focus:border-[#00E5FF] shadow-sm"
                     />
                   </div>
                   <div>
-                    <label className="block text-[9.5px] font-mono font-bold text-slate-400 mb-1 uppercase">Phone Number</label>
+                    <label className="block text-[9.5px] font-mono font-bold text-slate-700 dark:text-slate-400 mb-1 uppercase">Phone Number</label>
                     <input
                       type="tel"
                       value={formData.phone}
                       onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                       placeholder="+91 98765 43210"
-                      className="w-full px-3.5 py-2.5 rounded-xl bg-[#0E1522] border border-slate-800 text-white text-xs focus:outline-none focus:border-[#00E5FF]"
+                      className="w-full px-3.5 py-2.5 rounded-xl bg-white dark:bg-[#0E1522] border border-slate-300 dark:border-slate-800 text-slate-900 dark:text-white text-xs focus:outline-none focus:border-[#0284C7] dark:focus:border-[#00E5FF] shadow-sm"
                     />
                   </div>
                 </div>
 
                 <div>
-                  <label className="block text-[9.5px] font-mono font-bold text-slate-400 mb-1 uppercase">Industry Sector *</label>
+                  <label className="block text-[9.5px] font-mono font-bold text-slate-700 dark:text-slate-400 mb-1 uppercase">Industry Sector *</label>
                   <select
                     value={formData.industry}
                     onChange={(e) => setFormData({ ...formData, industry: e.target.value })}
-                    className="w-full px-3.5 py-2.5 rounded-xl bg-[#0E1522] border border-slate-800 text-white text-xs focus:outline-none focus:border-[#00E5FF]"
+                    className="w-full px-3.5 py-2.5 rounded-xl bg-white dark:bg-[#0E1522] border border-slate-300 dark:border-slate-800 text-slate-900 dark:text-white text-xs focus:outline-none focus:border-[#0284C7] dark:focus:border-[#00E5FF] shadow-sm"
                   >
                     <option value="Railways & Transportation">Railways & Transportation</option>
                     <option value="Smart Manufacturing">Smart Manufacturing & Heavy Motors</option>
@@ -148,13 +148,13 @@ export default function LeadFormBand() {
                 </div>
 
                 <div>
-                  <label className="block text-[9.5px] font-mono font-bold text-slate-400 mb-1 uppercase">Project Details / Message</label>
+                  <label className="block text-[9.5px] font-mono font-bold text-slate-700 dark:text-slate-400 mb-1 uppercase">Project Details / Message</label>
                   <textarea
                     rows={2}
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                     placeholder="Describe sensor counts, environment specifications..."
-                    className="w-full px-3.5 py-2.5 rounded-xl bg-[#0E1522] border border-slate-800 text-white text-xs focus:outline-none focus:border-[#00E5FF] resize-none"
+                    className="w-full px-3.5 py-2.5 rounded-xl bg-white dark:bg-[#0E1522] border border-slate-300 dark:border-slate-800 text-slate-900 dark:text-white text-xs focus:outline-none focus:border-[#0284C7] dark:focus:border-[#00E5FF] resize-none shadow-sm"
                   />
                 </div>
 
