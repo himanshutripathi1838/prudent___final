@@ -345,53 +345,7 @@ export default function AboutUs() {
         </div>
       </section>
 
-      {/* 7. Leadership & Engineering Team */}
-      <section className="py-16 sm:py-24 bg-[#060B12] border-b border-[#1E293B]">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-16">
-          <SectionHeading
-            category="Engineering Leadership"
-            title="Meet Our R&D Specialists & Systems Architects"
-            subtitle="Led by domain experts in embedded hardware, AI/ML signal processing, and enterprise cloud security."
-          />
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-            {teamMembers.map((member, idx) => (
-              <div
-                key={idx}
-                className="p-6 rounded-2xl bg-[#0E1522] border border-slate-800 hover:border-[#00E5FF]/50 transition-all duration-300 group flex flex-col justify-between"
-              >
-                <div>
-                  <div className="relative mb-4 rounded-xl overflow-hidden h-48 border border-slate-800">
-                    <img
-                      src={member.image}
-                      alt={member.name}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#060B12] via-transparent to-transparent opacity-60" />
-                  </div>
-                  <h3 className="text-lg font-bold text-white group-hover:text-[#00E5FF] transition-colors font-sans">
-                    {member.name}
-                  </h3>
-                  <p className="text-xs font-mono text-[#00E5FF] mb-2">{member.role}</p>
-                  <p className="text-xs text-slate-400 leading-relaxed font-sans">{member.bio}</p>
-                </div>
-
-                <div className="pt-4 mt-4 border-t border-slate-800 flex items-center justify-between">
-                  <span className="text-[10px] font-mono text-slate-500">Prudent Systems</span>
-                  <a
-                    href="https://linkedin.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="p-2 rounded-md bg-[#060B12] hover:bg-[#00E5FF] hover:text-slate-950 text-slate-300 transition-colors"
-                  >
-                    <LinkedinIcon className="w-4 h-4" />
-                  </a>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* 8. Stats Band */}
       <section className="py-16 sm:py-20 bg-[#0A0E14] border-b border-[#1E293B]">
