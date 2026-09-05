@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { NavLink, useLocation, useNavigate } from 'react-router-dom';
-import { Menu, X, ArrowRight, ShieldCheck } from 'lucide-react';
+import { Menu, X, ArrowRight, ShieldCheck, Sun, Moon } from 'lucide-react';
 import Modal from '../common/Modal';
 
 export default function Navbar() {
@@ -8,6 +8,10 @@ export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [demoModalOpen, setDemoModalOpen] = useState(false);
   const [demoFormSubmitted, setDemoFormSubmitted] = useState(false);
+  const [theme, setTheme] = useState(() => {
+    return localStorage.getItem('theme') || 'dark';
+  });
+
   const [demoData, setDemoData] = useState({
     name: '',
     email: '',
@@ -17,6 +21,21 @@ export default function Navbar() {
 
   const location = useLocation();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (theme === 'light') {
+      document.documentElement.classList.add('light');
+      document.documentElement.classList.remove('dark');
+    } else {
+      document.documentElement.classList.add('dark');
+      document.documentElement.classList.remove('light');
+    }
+    localStorage.setItem('theme', theme);
+  }, [theme]);
+
+  const toggleTheme = () => {
+    setTheme(prev => (prev === 'dark' ? 'light' : 'dark'));
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -103,8 +122,22 @@ export default function Navbar() {
               ))}
             </nav>
 
-            {/* Right: Action Button (Login & Contact removed per user request) */}
-            <div className="hidden lg:flex items-center gap-4">
+            {/* Right: Action Buttons & Theme Toggle */}
+            <div className="hidden lg:flex items-center gap-3">
+              {/* Theme Toggle Button */}
+              <button
+                onClick={toggleTheme}
+                title={theme === 'dark' ? "Switch to Light Mode" : "Switch to Dark Mode"}
+                className="p-2.5 rounded-full bg-[#0E1522] border border-slate-800 text-amber-400 hover:text-amber-300 hover:border-amber-400/50 transition-all flex items-center justify-center cursor-pointer shadow-md active:scale-95"
+                aria-label="Toggle Theme"
+              >
+                {theme === 'dark' ? (
+                  <Sun className="w-4 h-4 text-amber-400" />
+                ) : (
+                  <Moon className="w-4 h-4 text-sky-500" />
+                )}
+              </button>
+
               <button
                 onClick={() => setDemoModalOpen(true)}
                 className="px-6 py-2.5 rounded-full bg-[#00E5FF] hover:bg-[#52F1FF] text-slate-950 font-bold text-xs transition-all shadow-[0_0_20px_rgba(0,229,255,0.4)] hover:shadow-[0_0_35px_rgba(0,229,255,0.7)] flex items-center gap-2 active:scale-95 cursor-pointer font-sans"
@@ -115,12 +148,21 @@ export default function Navbar() {
             </div>
 
             {/* Mobile Menu Toggle Button */}
-            <button
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="lg:hidden p-2 rounded-xl bg-[#0E1522] border border-slate-800 text-slate-200"
-            >
-              {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-            </button>
+            <div className="flex lg:hidden items-center gap-2">
+              <button
+                onClick={toggleTheme}
+                className="p-2 rounded-xl bg-[#0E1522] border border-slate-800 text-amber-400"
+                aria-label="Toggle Theme"
+              >
+                {theme === 'dark' ? <Sun className="w-5 h-5 text-amber-400" /> : <Moon className="w-5 h-5 text-sky-500" />}
+              </button>
+              <button
+                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                className="p-2 rounded-xl bg-[#0E1522] border border-slate-800 text-slate-200"
+              >
+                {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              </button>
+            </div>
 
           </div>
         </div>
@@ -139,6 +181,13 @@ export default function Navbar() {
               </NavLink>
             ))}
             <div className="pt-3 border-t border-slate-800/80 space-y-2">
+              <button
+                onClick={toggleTheme}
+                className="w-full py-2.5 rounded-xl bg-[#0E1522] border border-slate-800 text-xs font-mono font-bold text-slate-200 flex items-center justify-center gap-2"
+              >
+                {theme === 'dark' ? <Sun className="w-4 h-4 text-amber-400" /> : <Moon className="w-4 h-4 text-sky-500" />}
+                <span>Switch to {theme === 'dark' ? 'Light Mode' : 'Dark Mode'}</span>
+              </button>
               <button
                 onClick={() => {
                   setMobileMenuOpen(false);
