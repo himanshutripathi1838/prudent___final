@@ -294,7 +294,7 @@ body {
 }
 
 /* ========================================================================= */
-/* LIGHT MODE STYLES & OVERRIDES                                             */
+/* LIGHT MODE STYLES & OVERRIDES (HIGH CONTRAST & ULTRA LEGIBLE)           */
 /* ========================================================================= */
 
 html.light {
@@ -306,79 +306,218 @@ html.light body {
   color: #0F172A !important;
 }
 
+/* Header & Navigation */
 html.light header {
-  background-color: rgba(255, 255, 255, 0.92) !important;
+  background-color: rgba(255, 255, 255, 0.95) !important;
   border-color: #E2E8F0 !important;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05) !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06) !important;
 }
 
+html.light header nav a {
+  color: #334155 !important;
+}
+
+html.light header nav a:hover {
+  color: #0284C7 !important;
+  background-color: rgba(2, 132, 199, 0.08) !important;
+}
+
+html.light header nav a.text-\[\#00E5FF\] {
+  color: #0284C7 !important;
+  background-color: rgba(2, 132, 199, 0.12) !important;
+  border-color: rgba(2, 132, 199, 0.3) !important;
+}
+
+/* Mobile dropdown menu */
+html.light div.lg\:hidden.bg-\[\#060B12\]\/95 {
+  background-color: rgba(255, 255, 255, 0.98) !important;
+  border-color: #E2E8F0 !important;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12) !important;
+}
+
+html.light div.lg\:hidden.bg-\[\#060B12\]\/95 a {
+  color: #1E293B !important;
+}
+
+/* Footer */
 html.light footer {
   background-color: #F1F5F9 !important;
   border-color: #E2E8F0 !important;
   color: #334155 !important;
 }
 
+html.light footer p, 
+html.light footer li a, 
+html.light footer span {
+  color: #475569 !important;
+}
+
+html.light footer li a:hover {
+  color: #0284C7 !important;
+}
+
+html.light footer h4 {
+  color: #0F172A !important;
+}
+
+/* Page Backgrounds & Containers */
 html.light .bg-\[\#0A0E14\],
 html.light .bg-\[\#060B12\],
 html.light .bg-\[\#04070D\],
 html.light .bg-\[\#0B0F17\],
-html.light .bg-\[\#05080E\] {
+html.light .bg-\[\#05080E\],
+html.light .bg-\[\#000000\],
+html.light .bg-slate-950,
+html.light .bg-slate-900 {
   background-color: #F8FAFC !important;
 }
 
+/* Cards & Elevated Containers */
 html.light .bg-\[\#0E1522\],
 html.light .bg-\[\#131B2E\],
 html.light .bg-\[\#0F1626\],
-html.light .bg-\[\#1A253E\] {
+html.light .bg-\[\#1A253E\],
+html.light .bg-\[\#080D1A\],
+html.light .bg-\[\#0E1522\]\/90,
+html.light .bg-\[\#060B12\]\/90 {
   background-color: #FFFFFF !important;
+  border-color: #E2E8F0 !important;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.05) !important;
 }
 
+/* Primary Headings & Dark Text Elements */
+html.light h1, 
+html.light h2, 
+html.light h3, 
+html.light h4, 
+html.light h5, 
+html.light h6,
 html.light .text-white,
 html.light .text-slate-100,
 html.light .text-slate-200 {
   color: #0F172A !important;
 }
 
+/* Body Text & Subtitles */
+html.light p,
 html.light .text-slate-300,
 html.light .text-slate-400 {
-  color: #475569 !important;
+  color: #334155 !important;
 }
 
+html.light .text-slate-500 {
+  color: #64748B !important;
+}
+
+/* Accent Colors Optimized for White/Light Backgrounds */
+html.light .text-\[\#00E5FF\],
+html.light .text-\[\#00C2CB\] {
+  color: #0284C7 !important;
+}
+
+html.light .text-\[\#FFB800\],
+html.light .text-\[\#F2A623\] {
+  color: #D97706 !important;
+}
+
+html.light .text-emerald-400 {
+  color: #059669 !important;
+}
+
+/* Category Pill Badges */
+html.light .bg-\[\#00E5FF\]\/10 {
+  background-color: #E0F2FE !important;
+}
+
+html.light .border-\[\#00E5FF\]\/30 {
+  border-color: #BAE6FD !important;
+}
+
+/* Borders */
 html.light .border-slate-800,
 html.light .border-slate-800\/80,
 html.light .border-slate-700,
+html.light .border-slate-700\/80,
 html.light .border-\[\#1E293B\],
 html.light .border-\[\#1E293B\]\/60 {
   border-color: #E2E8F0 !important;
 }
 
-html.light .text-\[\#00E5FF\] {
-  color: #0284C7 !important;
+/* Form Inputs, Selects, & Textareas */
+html.light input,
+html.light select,
+html.light textarea {
+  background-color: #FFFFFF !important;
+  color: #0F172A !important;
+  border-color: #CBD5E1 !important;
 }
 
-html.light .bg-\[\#00E5FF\]\/10 {
-  background-color: rgba(2, 132, 199, 0.1) !important;
+html.light input::placeholder,
+html.light textarea::placeholder {
+  color: #94A3B8 !important;
 }
 
-html.light .border-\[\#00E5FF\]\/30 {
-  border-color: rgba(2, 132, 199, 0.3) !important;
+html.light input:focus,
+html.light select:focus,
+html.light textarea:focus {
+  border-color: #0284C7 !important;
+  box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.15) !important;
 }
 
+/* Modals */
+html.light .fixed div.bg-\[\#0E1522\],
+html.light .fixed div.bg-\[\#060B12\],
+html.light .fixed div.bg-\[\#131B2E\] {
+  background-color: #FFFFFF !important;
+  border-color: #E2E8F0 !important;
+  color: #0F172A !important;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25) !important;
+}
+
+/* Glass Panels */
+html.light .glass-panel {
+  background: rgba(255, 255, 255, 0.92) !important;
+  border-color: #E2E8F0 !important;
+  box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.08) !important;
+}
+
+html.light .glass-panel-hover:hover {
+  background: #FFFFFF !important;
+  border-color: #0284C7 !important;
+  box-shadow: 0 15px 35px -8px rgba(2, 132, 199, 0.15) !important;
+}
+
+/* Cyber Grid Background */
 html.light .bg-cyber-grid {
   background-image: 
     linear-gradient(to right, rgba(2, 132, 199, 0.08) 1px, transparent 1px),
     linear-gradient(to bottom, rgba(2, 132, 199, 0.08) 1px, transparent 1px) !important;
 }
 
-html.light .glass-panel {
-  background: rgba(255, 255, 255, 0.88) !important;
-  border-color: rgba(2, 132, 199, 0.2) !important;
-  box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.08) !important;
+/* Animated Gradient Text in Light Mode */
+html.light .text-gradient-animated {
+  background: linear-gradient(135deg, #0284C7 0%, #2563EB 35%, #7C3AED 70%, #0D9488 100%) !important;
+  background-size: 300% 300% !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
 }
 
-html.light .glass-panel-hover:hover {
-  background: #FFFFFF !important;
-  border-color: rgba(2, 132, 199, 0.4) !important;
-  box-shadow: 0 15px 35px -8px rgba(2, 132, 199, 0.2) !important;
+/* Secondary Buttons in Light Mode */
+html.light button.bg-\[\#0E1522\],
+html.light button.bg-\[\#060B12\],
+html.light a.bg-\[\#0E1522\],
+html.light a.bg-\[\#060B12\] {
+  background-color: #F1F5F9 !important;
+  color: #0F172A !important;
+  border-color: #CBD5E1 !important;
 }
+
+html.light button.bg-\[\#0E1522\]:hover,
+html.light button.bg-\[\#060B12\]:hover,
+html.light a.bg-\[\#0E1522\]:hover,
+html.light a.bg-\[\#060B12\]:hover {
+  background-color: #E2E8F0 !important;
+  border-color: #0284C7 !important;
+}
+
 
