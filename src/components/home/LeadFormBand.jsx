@@ -36,40 +36,40 @@ export default function LeadFormBand() {
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="p-8 sm:p-12 lg:p-14 rounded-3xl bg-[#09111F] border border-[#00E5FF]/40 shadow-[0_0_80px_rgba(0,229,255,0.22)] grid grid-cols-1 lg:grid-cols-12 gap-10 items-center relative overflow-hidden"
+          className="p-8 sm:p-12 lg:p-14 rounded-3xl bg-white dark:bg-[#09111F] border border-slate-200 dark:border-[#00E5FF]/40 shadow-xl dark:shadow-[0_0_80px_rgba(0,229,255,0.22)] grid grid-cols-1 lg:grid-cols-12 gap-10 items-center relative overflow-hidden"
         >
           {/* Left Column: Heading & Value Proposition */}
           <div className="lg:col-span-6 space-y-6">
             <div className="space-y-3">
-              <span className="uppercase text-[11px] font-mono tracking-[0.15em] text-[#00E5FF] font-bold">
+              <span className="uppercase text-[11px] font-mono tracking-[0.15em] text-[#0284C7] dark:text-[#00E5FF] font-bold">
                 GET IN TOUCH
               </span>
-              <h2 className="text-3xl sm:text-4xl lg:text-[40px] font-extrabold text-white tracking-tight leading-tight font-sans">
+              <h2 className="text-3xl sm:text-4xl lg:text-[40px] font-extrabold text-slate-900 dark:text-white tracking-tight leading-tight font-sans">
                 Ready to Build Your Smart Infrastructure?
               </h2>
-              <p className="text-sm sm:text-base text-slate-300 font-normal leading-relaxed">
+              <p className="text-sm sm:text-base text-slate-600 dark:text-slate-300 font-normal leading-relaxed">
                 Connect your assets, monitor them in real time and predict failures before they impact operations.
               </p>
             </div>
 
-            <div className="space-y-2 text-xs font-mono text-slate-400 pt-2">
+            <div className="space-y-2 text-xs font-mono text-slate-600 dark:text-slate-400 pt-2">
               <div className="flex items-center gap-2">
-                <ShieldCheck className="w-4 h-4 text-[#00E5FF]" />
+                <ShieldCheck className="w-4 h-4 text-[#0284C7] dark:text-[#00E5FF]" />
                 <span>24/7 Enterprise SLA Guarantee</span>
               </div>
               <div className="flex items-center gap-2">
-                <ShieldCheck className="w-4 h-4 text-[#00E5FF]" />
+                <ShieldCheck className="w-4 h-4 text-[#0284C7] dark:text-[#00E5FF]" />
                 <span>Strict Non-Disclosure & IP Protection</span>
               </div>
               <div className="flex items-center gap-2">
-                <ShieldCheck className="w-4 h-4 text-[#00E5FF]" />
+                <ShieldCheck className="w-4 h-4 text-[#0284C7] dark:text-[#00E5FF]" />
                 <span>Direct Access to Senior Hardware Engineers</span>
               </div>
             </div>
           </div>
 
           {/* Right Column: Premium Compact Form matching screenshot */}
-          <div className="lg:col-span-6 bg-[#060B12]/90 p-6 sm:p-8 rounded-2xl border border-slate-800 shadow-2xl">
+          <div className="lg:col-span-6 bg-slate-50 dark:bg-[#060B12]/90 p-6 sm:p-8 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-2xl">
             {formSubmitted ? (
               <div className="py-12 text-center space-y-3">
                 <div className="w-12 h-12 rounded-2xl bg-emerald-500/20 border border-emerald-500/40 text-emerald-400 flex items-center justify-center mx-auto mb-2">

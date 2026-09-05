@@ -31,18 +31,18 @@ export default function StatCounter({ target, label, suffix = '', prefix = '', d
   }, [isInView, target]);
 
   return (
-    <div ref={ref} className="text-center p-8 sm:p-10 rounded-2xl bg-[#121824] border border-[#1E293B] hover:border-[#00C2CB]/50 transition-all duration-300 group flex flex-col items-center justify-center">
+    <div ref={ref} className="text-center p-8 sm:p-10 rounded-2xl bg-white dark:bg-[#121824] border border-slate-200 dark:border-[#1E293B] shadow-md dark:shadow-none hover:border-[#00C2CB]/50 transition-all duration-300 group flex flex-col items-center justify-center">
       {IconComp && (
-        <div className="w-14 h-14 rounded-full bg-gradient-to-br from-[#00C2CB]/25 to-[#00C2CB]/5 border border-[#00C2CB]/30 flex items-center justify-center text-[#00C2CB] mb-4 group-hover:scale-110 transition-transform shadow-[0_0_15px_rgba(0,194,203,0.3)]">
+        <div className="w-14 h-14 rounded-full bg-[#00C2CB]/10 dark:bg-gradient-to-br dark:from-[#00C2CB]/25 dark:to-[#00C2CB]/5 border border-[#00C2CB]/30 flex items-center justify-center text-[#0284C7] dark:text-[#00C2CB] mb-4 group-hover:scale-110 transition-transform shadow-md">
           <IconComp className="w-6 h-6" />
         </div>
       )}
-      <div className="text-4xl sm:text-5xl lg:text-[56px] font-extrabold text-white tracking-tight mb-2 font-mono flex items-center justify-center gap-0.5 leading-none">
-        <span className="text-[#00C2CB]">{prefix}</span>
+      <div className="text-4xl sm:text-5xl lg:text-[56px] font-extrabold text-slate-900 dark:text-white tracking-tight mb-2 font-mono flex items-center justify-center gap-0.5 leading-none">
+        <span className="text-[#0284C7] dark:text-[#00C2CB]">{prefix}</span>
         <span>{decimals > 0 ? count.toFixed(decimals) : Math.floor(count).toLocaleString()}</span>
-        <span className="text-[#F2A623]">{suffix}</span>
+        <span className="text-[#D97706] dark:text-[#F2A623]">{suffix}</span>
       </div>
-      <p className="text-sm font-medium text-slate-400 mt-1">{label}</p>
+      <p className="text-sm font-medium text-slate-600 dark:text-slate-400 mt-1">{label}</p>
     </div>
   );
 }

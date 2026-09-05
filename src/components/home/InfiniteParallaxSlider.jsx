@@ -298,8 +298,8 @@ export default function InfiniteParallaxSlider({ onDemoRequest, onScrollDownNext
                 else projectsRef.current.delete(i);
               }}
             >
-              <img src={data.image} alt={data.title} className="opacity-80" />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#0B0F17] via-[#0B0F17]/40 to-[#0B0F17]/30 pointer-events-none" />
+              <img src={data.image} alt={data.title} className="opacity-30 dark:opacity-80" />
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-100/90 via-slate-100/70 to-slate-100/50 dark:from-[#0B0F17] dark:via-[#0B0F17]/40 dark:to-[#0B0F17]/30 pointer-events-none" />
             </div>
           );
         })}
@@ -307,7 +307,7 @@ export default function InfiniteParallaxSlider({ onDemoRequest, onScrollDownNext
 
       {/* Floating Dynamic Hero Text */}
       <div className="absolute top-1/2 -translate-y-1/2 left-4 sm:left-12 lg:left-20 z-20 max-w-xl px-4 pointer-events-auto">
-        <div className="space-y-4 drop-shadow-[0_8px_30px_rgba(0,0,0,0.95)]">
+        <div className="space-y-4">
           
           {/* Dynamic Badge & Platform Counter */}
           <div className="flex items-center justify-between gap-3">
@@ -318,14 +318,14 @@ export default function InfiniteParallaxSlider({ onDemoRequest, onScrollDownNext
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: 6 }}
                 transition={{ duration: 0.3 }}
-                className="uppercase text-[10px] sm:text-[11px] font-mono tracking-[0.08em] text-[#00E5FF] bg-[#0B0F17]/60 backdrop-blur-md px-3 py-1 rounded-full border border-[#00E5FF]/40 inline-flex items-center gap-2 shadow-lg"
+                className="uppercase text-[10px] sm:text-[11px] font-mono tracking-[0.08em] text-[#0284C7] dark:text-[#00E5FF] bg-white/90 dark:bg-[#0B0F17]/60 backdrop-blur-md px-3 py-1 rounded-full border border-[#0284C7]/40 dark:border-[#00E5FF]/40 inline-flex items-center gap-2 shadow-lg"
               >
-                <span className="w-1.5 h-1.5 rounded-full bg-[#00E5FF] animate-ping shrink-0" />
+                <span className="w-1.5 h-1.5 rounded-full bg-[#0284C7] dark:bg-[#00E5FF] animate-ping shrink-0" />
                 <span className="truncate">{activeData.badge}</span>
               </motion.span>
             </AnimatePresence>
 
-            <span className="text-[11px] font-mono font-extrabold text-[#F2A623] bg-[#0B0F17]/60 backdrop-blur-md px-3 py-1 rounded-full border border-[#F2A623]/40 shrink-0 shadow-lg">
+            <span className="text-[11px] font-mono font-extrabold text-[#D97706] dark:text-[#F2A623] bg-white/90 dark:bg-[#0B0F17]/60 backdrop-blur-md px-3 py-1 rounded-full border border-[#D97706]/40 dark:border-[#F2A623]/40 shrink-0 shadow-lg">
               Platform {photoStep} / 5
             </span>
           </div>
@@ -340,14 +340,14 @@ export default function InfiniteParallaxSlider({ onDemoRequest, onScrollDownNext
               transition={{ duration: 0.35, ease: "easeOut" }}
               className="space-y-2"
             >
-              <h1 className="text-2xl sm:text-4xl lg:text-[40px] font-extrabold text-white tracking-tight leading-[1.2] drop-shadow-[0_4px_16px_rgba(0,0,0,0.9)]">
+              <h1 className="text-2xl sm:text-4xl lg:text-[40px] font-extrabold text-slate-900 dark:text-white tracking-tight leading-[1.2] drop-shadow-sm dark:drop-shadow-[0_4px_16px_rgba(0,0,0,0.9)]">
                 {activeData.headlineLine1} <br />
-                <span className="bg-gradient-to-r from-white via-slate-100 to-[#00E5FF] bg-clip-text text-transparent">
+                <span className="bg-gradient-to-r from-slate-900 via-slate-700 to-[#0284C7] dark:from-white dark:via-slate-100 dark:to-[#00E5FF] bg-clip-text text-transparent">
                   {activeData.headlineLine2}
                 </span>
               </h1>
 
-              <p className="text-xs sm:text-sm lg:text-[15px] font-normal text-slate-300 leading-relaxed font-sans pt-1 max-w-lg drop-shadow-[0_2px_10px_rgba(0,0,0,0.9)]">
+              <p className="text-xs sm:text-sm lg:text-[15px] font-normal text-slate-700 dark:text-slate-300 leading-relaxed font-sans pt-1 max-w-lg drop-shadow-sm dark:drop-shadow-[0_2px_10px_rgba(0,0,0,0.9)]">
                 {activeData.detailText}
               </p>
             </motion.div>
@@ -364,10 +364,10 @@ export default function InfiniteParallaxSlider({ onDemoRequest, onScrollDownNext
 
             <button
               onClick={onDemoRequest}
-              className="w-full sm:w-auto px-6 py-3 rounded-xl text-white bg-[#0B0F17]/80 hover:bg-[#00E5FF]/20 backdrop-blur-md border border-slate-600 hover:border-[#00E5FF] font-bold text-sm transition-all flex items-center justify-center gap-2 shadow-lg cursor-pointer"
+              className="w-full sm:w-auto px-6 py-3 rounded-xl text-slate-900 dark:text-white bg-white/90 dark:bg-[#0B0F17]/80 hover:bg-slate-200 dark:hover:bg-[#00E5FF]/20 backdrop-blur-md border border-slate-300 dark:border-slate-600 hover:border-[#0284C7] dark:hover:border-[#00E5FF] font-bold text-sm transition-all flex items-center justify-center gap-2 shadow-lg cursor-pointer"
             >
               <span>Request Demo</span>
-              <Cpu className="w-4 h-4 text-[#00E5FF]" />
+              <Cpu className="w-4 h-4 text-[#0284C7] dark:text-[#00E5FF]" />
             </button>
           </div>
         </div>

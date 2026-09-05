@@ -179,14 +179,14 @@ export default function HomeTechnicalExpertiseSection() {
         </div>
 
         {/* Bottom Custom Quote Banner */}
-        <div className="p-6 sm:p-8 rounded-2xl bg-gradient-to-r from-[#0E1522] via-[#141E30] to-[#0E1522] border border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-6 shadow-xl">
+        <div className="p-6 sm:p-8 rounded-2xl bg-white dark:bg-gradient-to-r dark:from-[#0E1522] dark:via-[#141E30] dark:to-[#0E1522] border border-slate-200 dark:border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-6 shadow-xl">
           <div className="flex items-center gap-4">
-            <div className="w-12 h-12 rounded-xl bg-[#00E5FF]/10 border border-[#00E5FF]/30 flex items-center justify-center text-[#00E5FF] shrink-0">
+            <div className="w-12 h-12 rounded-xl bg-[#00E5FF]/10 border border-[#00E5FF]/30 flex items-center justify-center text-[#0284C7] dark:text-[#00E5FF] shrink-0">
               <ShieldCheck className="w-6 h-6" />
             </div>
             <div>
-              <h4 className="text-base font-mono font-bold text-white">Need Custom Hardware & Sensor Integration?</h4>
-              <p className="text-xs font-sans text-slate-300 mt-1">Our embedded engineers design custom DAQ boards, IP68 enclosures, and custom firmware.</p>
+              <h4 className="text-base font-mono font-bold text-slate-900 dark:text-white">Need Custom Hardware & Sensor Integration?</h4>
+              <p className="text-xs font-sans text-slate-600 dark:text-slate-300 mt-1">Our embedded engineers design custom DAQ boards, IP68 enclosures, and custom firmware.</p>
             </div>
           </div>
           <a
