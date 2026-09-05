@@ -1,0 +1,294 @@
+@import "tailwindcss";
+
+@theme {
+  --color-dark-bg: #0B0F17;
+  --color-dark-card: #131B2E;
+  --color-dark-hover: #1A253E;
+  --color-dark-border: #1E2D4A;
+  --color-[#00C2CB]: #00C2CB;
+  --color-[#00E5FF]: #00E5FF;
+  --color-[#FFB800]: #FFB800;
+  --color-[#F2A623]: #F2A623;
+  --font-sans: 'Inter', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #0B0F17;
+  color: #F1F5F9;
+  font-family: 'Inter', sans-serif;
+  overflow-x: hidden;
+}
+
+/* Custom Sleek Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0B0F17;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1E2D4A;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #00E5FF;
+}
+
+/* ========================================================================= */
+/* ANIMATION UTILITIES & KEYFRAMES                                           */
+/* ========================================================================= */
+
+@keyframes animStar {
+  from {
+    transform: translateY(0px);
+  }
+  to {
+    transform: translateY(-2000px);
+  }
+}
+
+@keyframes floatSlow {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-10px) rotate(1deg);
+  }
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    opacity: 0.4;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.06);
+  }
+}
+
+@keyframes waveFlow {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes shimmerText {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.animate-float {
+  animation: floatSlow 6s ease-in-out infinite;
+}
+
+.animate-float-delayed {
+  animation: floatSlow 7s ease-in-out infinite 3s;
+}
+
+.animate-pulse-glow {
+  animation: pulseGlow 4s ease-in-out infinite;
+}
+
+.animate-gradient-text {
+  background-size: 200% auto;
+  animation: shimmerText 5s linear infinite;
+}
+
+/* Animated Gradient Text Class */
+.text-gradient-animated {
+  background: linear-gradient(135deg, #00E5FF 0%, #38BDF8 35%, #8B5CF6 70%, #00C2CB 100%);
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradientShift 8s ease infinite;
+}
+
+/* Glassmorphism utility */
+.glass-panel {
+  background: rgba(19, 27, 46, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(0, 229, 255, 0.15);
+}
+
+.glass-panel-hover {
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glass-panel-hover:hover {
+  background: rgba(26, 37, 62, 0.95);
+  border-color: rgba(0, 229, 255, 0.5);
+  transform: translateY(-4px) scale(1.01);
+  box-shadow: 0 12px 35px -8px rgba(0, 229, 255, 0.25);
+}
+
+/* Cyber grid background */
+.bg-cyber-grid {
+  background-size: 40px 40px;
+  background-image: 
+    linear-gradient(to right, rgba(0, 229, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 229, 255, 0.04) 1px, transparent 1px);
+}
+
+/* Fullscreen Infinite Parallax Hero Slider Styles */
+.parallax-container {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background: #0B0F17;
+}
+
+.project-list {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.project {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  will-change: transform;
+}
+
+.project img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  will-change: transform;
+}
+
+.minimap {
+  position: absolute;
+  bottom: 32px;
+  right: 32px;
+  width: 320px;
+  height: 180px;
+  z-index: 30;
+  border-radius: 1rem;
+  overflow: hidden;
+  border: 1px solid rgba(0, 229, 255, 0.4);
+  background: rgba(11, 15, 23, 0.88);
+  backdrop-filter: blur(16px);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.7);
+}
+
+@media (max-width: 640px) {
+  .minimap {
+    bottom: 12px;
+    right: 12px;
+    width: 130px;
+    height: 75px;
+    border-radius: 0.75rem;
+  }
+}
+
+.minimap-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+}
+
+.minimap-img-preview {
+  position: relative;
+  width: 40%;
+  height: 100%;
+  overflow: hidden;
+}
+
+@media (max-width: 640px) {
+  .minimap-img-preview {
+    width: 100%;
+  }
+  .minimap-info-list {
+    display: none;
+  }
+}
+
+.minimap-img-item {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.minimap-img-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.minimap-info-list {
+  position: relative;
+  width: 60%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.minimap-item-info {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 4px;
+  font-family: 'JetBrains Mono', monospace;
+  color: #fff;
+}
+
+.minimap-item-info-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  color: #94A3B8;
+}
+
+.minimap-item-info-row:first-child {
+  font-size: 13px;
+  font-weight: 700;
+  color: #00E5FF;
+}
