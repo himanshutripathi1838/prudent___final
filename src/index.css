@@ -571,3 +571,28 @@ html.light a.bg-\[\#060B12\]:hover {
   background-color: #F1F5F9 !important;
   border-color: #0284C7 !important;
 }
+
+/* Responsive foundations: allow content to shrink and wrap inside layouts. */
+html { scroll-padding-top: 6rem; }
+#root { min-width: 0; }
+:where(.grid, .flex) > * { min-width: 0; }
+:where(h1, h2, h3, h4, p, label, a, button) { overflow-wrap: anywhere; }
+button, a, input, select, textarea { touch-action: manipulation; }
+button { cursor: pointer; }
+:where(button, a, input, select, textarea):focus-visible {
+  outline: 3px solid #0284c7;
+  outline-offset: 3px;
+}
+.responsive-hero { min-height: calc(100svh - 5rem); display: flex; align-items: center; touch-action: pan-y pinch-zoom; }
+.hero-control { display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; flex-shrink: 0; border: 1px solid #64748b; border-radius: 12px; color: #0284c7; background: #ffffff; }
+.dark .hero-control { color: #67e8f9; background: #0e1522; }
+@media (max-width: 639px) {
+  input:not([type="checkbox"]):not([type="radio"]), select, textarea { font-size: 16px; min-height: 44px; }
+  form button, header button, footer a { min-height: 44px; }
+  footer a { display: inline-flex; align-items: center; }
+  form { min-width: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; }
+}

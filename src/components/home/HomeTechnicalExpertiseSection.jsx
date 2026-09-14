@@ -174,12 +174,12 @@ export default function HomeTechnicalExpertiseSection() {
         </div>
 
         {/* Centered Vertical Spring Animated Logo Carousel with 5 Columns containing all 20 items */}
-        <div className="flex justify-center items-center py-4 w-full overflow-x-auto">
+        <div className="flex justify-center items-center py-4 w-full">
           <LogoCarousel columnCount={5} logos={techLogos} />
         </div>
 
         {/* Bottom Custom Quote Banner */}
-        <div className="p-6 sm:p-8 rounded-2xl bg-white dark:bg-gradient-to-r dark:from-[#0E1522] dark:via-[#141E30] dark:to-[#0E1522] border border-slate-200 dark:border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-6 shadow-xl">
+        <div className="p-6 sm:p-8 rounded-2xl bg-white dark:bg-gradient-to-r dark:from-[#0E1522] dark:via-[#141E30] dark:to-[#0E1522] border border-slate-200 dark:border-slate-800 flex flex-col lg:flex-row items-center justify-between gap-6 shadow-xl">
           <div className="flex items-center gap-4">
             <div className="w-12 h-12 rounded-xl bg-[#00E5FF]/10 border border-[#00E5FF]/30 flex items-center justify-center text-[#0284C7] dark:text-[#00E5FF] shrink-0">
               <ShieldCheck className="w-6 h-6" />
@@ -191,7 +191,7 @@ export default function HomeTechnicalExpertiseSection() {
           </div>
           <a
             href="/contact-us"
-            className="px-5 py-3 rounded-xl bg-[#00E5FF] hover:bg-[#52F1FF] text-slate-950 font-mono font-bold text-xs transition-all shadow-lg shadow-[#00E5FF]/20 shrink-0 flex items-center gap-2"
+            className="w-full sm:w-auto justify-center px-4 sm:px-5 py-3 rounded-xl bg-[#00E5FF] hover:bg-[#52F1FF] text-slate-950 font-mono font-bold text-xs transition-all shadow-lg shadow-[#00E5FF]/20 shrink-0 flex items-center gap-2"
           >
             <span>Get Custom Hardware Quote</span>
             <ArrowRight className="w-4 h-4" />

@@ -26,6 +26,7 @@ export default function SolutionsComparisonTable() {
         <div className="max-w-md mx-auto mb-8 relative">
           <Search className="w-5 h-5 text-slate-400 absolute left-4 top-1/2 -translate-y-1/2" />
           <input
+            aria-label="Search industrial applications"
             type="text"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
@@ -35,7 +36,7 @@ export default function SolutionsComparisonTable() {
         </div>
 
         {/* Desktop Table View (Hidden on mobile) */}
-        <div className="hidden sm:block rounded-2xl border border-[#1E293B] bg-[#121824] overflow-hidden shadow-2xl">
+        <div className="hidden lg:block rounded-2xl border border-[#1E293B] bg-[#121824] overflow-hidden shadow-2xl">
           <div className="overflow-x-auto">
             <table className="w-full text-left text-xs sm:text-sm">
               <thead className="bg-[#0A0E14] border-b border-[#1E293B] text-slate-400 font-mono uppercase text-[11px] tracking-wider">
@@ -76,11 +77,11 @@ export default function SolutionsComparisonTable() {
         </div>
 
         {/* Mobile Cards View (Visible on small screens) */}
-        <div className="sm:hidden space-y-4">
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:hidden">
           {filteredApps.length > 0 ? (
             filteredApps.map((row, idx) => (
               <div key={idx} className="p-5 rounded-2xl bg-[#121824] border border-[#1E293B] space-y-3 shadow-lg">
-                <div className="flex items-center justify-between pb-2 border-b border-slate-800">
+                <div className="flex flex-wrap items-start justify-between gap-2 pb-2 border-b border-slate-800">
                   <h4 className="text-base font-bold text-white">{row.solution}</h4>
                   <span className="text-[10px] font-mono text-[#00C2CB] bg-[#00C2CB]/10 px-2 py-0.5 rounded border border-[#00C2CB]/30">
                     {row.connectivity}

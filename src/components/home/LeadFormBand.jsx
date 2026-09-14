@@ -28,7 +28,7 @@ export default function LeadFormBand() {
       <div className="absolute inset-0 bg-cyber-grid opacity-15 pointer-events-none" />
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-[#00E5FF]/10 blur-[220px] rounded-full pointer-events-none animate-pulse" />
 
-      <div className="max-w-[1440px] mx-auto px-6 sm:px-10 lg:px-16 relative z-10">
+      <div className="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-16 relative z-10">
         
         {/* Glowing Dark Panel with Split Form matching screenshot */}
         <motion.div
@@ -36,7 +36,7 @@ export default function LeadFormBand() {
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="p-8 sm:p-12 lg:p-14 rounded-3xl bg-white dark:bg-[#09111F] border border-slate-200 dark:border-[#00E5FF]/40 shadow-xl dark:shadow-[0_0_80px_rgba(0,229,255,0.22)] grid grid-cols-1 lg:grid-cols-12 gap-10 items-center relative overflow-hidden"
+          className="p-4 sm:p-8 xl:p-12 lg:p-14 rounded-3xl bg-white dark:bg-[#09111F] border border-slate-200 dark:border-[#00E5FF]/40 shadow-xl dark:shadow-[0_0_80px_rgba(0,229,255,0.22)] grid grid-cols-1 lg:grid-cols-12 gap-10 items-center relative overflow-hidden"
         >
           {/* Left Column: Heading & Value Proposition */}
           <div className="lg:col-span-6 space-y-6">
@@ -69,7 +69,7 @@ export default function LeadFormBand() {
           </div>
 
           {/* Right Column: Premium Compact Form matching screenshot */}
-          <div className="lg:col-span-6 bg-slate-50 dark:bg-[#060B12]/90 p-6 sm:p-8 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-2xl">
+          <div className="lg:col-span-6 bg-slate-50 dark:bg-[#060B12]/90 p-4 sm:p-6 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-2xl">
             {formSubmitted ? (
               <div className="py-12 text-center space-y-3">
                 <div className="w-12 h-12 rounded-2xl bg-emerald-500/20 border border-emerald-500/40 text-emerald-400 flex items-center justify-center mx-auto mb-2">

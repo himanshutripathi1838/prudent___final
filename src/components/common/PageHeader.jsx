@@ -6,7 +6,7 @@ import GlowHorizon from './GlowHorizon';
 
 export default function PageHeader({ title, subtitle, category, breadcrumbs = [] }) {
   return (
-    <div className="relative bg-[#050507] pt-20 pb-28 lg:pt-28 lg:pb-36 overflow-hidden">
+    <div className="relative bg-[#050507] pt-12 sm:pt-20 pb-24 sm:pb-28 lg:pt-28 lg:pb-36 overflow-hidden">
       
       {/* GLOW HORIZON BACKGROUND EFFECT */}
       <GlowHorizon variant="top" />
@@ -18,7 +18,7 @@ export default function PageHeader({ title, subtitle, category, breadcrumbs = []
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-20">
         
         {/* Breadcrumb Navigation */}
-        <nav className="flex items-center gap-2 text-xs font-mono text-slate-400 mb-6 drop-shadow-md">
+        <nav className="flex flex-wrap items-center gap-2 text-xs font-mono text-slate-400 mb-6 drop-shadow-md">
           <NavLink to="/" className="hover:text-[#00E5FF] transition-colors">
             Home
           </NavLink>

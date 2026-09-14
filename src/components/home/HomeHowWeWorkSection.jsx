@@ -95,7 +95,7 @@ export default function HomeHowWeWorkSection() {
 
         {/* 6 WORKFLOW CARDS GRID - Fully Responsive on Mobile & Desktop */}
         <div className="w-full">
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-6 gap-4">
             {workflowSteps.map((step, idx) => {
               const IconComp = step.icon;
               const isLast = idx === workflowSteps.length - 1;

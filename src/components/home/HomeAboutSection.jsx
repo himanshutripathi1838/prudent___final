@@ -88,7 +88,7 @@ export default function HomeAboutSection() {
             transition={{ duration: 0.6 }}
             className="lg:col-span-5"
           >
-            <div className="p-8 rounded-3xl bg-[#0E1522]/90 border border-slate-800 hover:border-[#00E5FF]/40 transition-all duration-300 shadow-2xl space-y-6 relative overflow-hidden group">
+            <div className="p-5 sm:p-8 rounded-3xl bg-[#0E1522]/90 border border-slate-800 hover:border-[#00E5FF]/40 transition-all duration-300 shadow-2xl space-y-6 relative overflow-hidden group">
               {/* Background Glow */}
               <div className="absolute top-0 right-0 w-64 h-64 bg-[#00E5FF]/5 rounded-full blur-[100px] pointer-events-none" />
 

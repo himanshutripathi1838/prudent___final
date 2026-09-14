@@ -43,7 +43,7 @@ const LogoColumn = React.memo(({ logos, index, currentTime }) => {
 
   return (
     <motion.div
-      className="relative h-20 w-32 md:h-28 md:w-44 rounded-2xl bg-[#0E1522]/90 border border-slate-800 p-2 shadow-xl flex items-center justify-center overflow-hidden"
+      className="relative h-28 w-full min-w-0 rounded-2xl bg-[#0E1522]/90 border border-slate-800 p-2 shadow-xl flex items-center justify-center overflow-hidden"
       initial={{ opacity: 0, y: 50 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{
@@ -86,7 +86,7 @@ const LogoColumn = React.memo(({ logos, index, currentTime }) => {
           {CurrentLogo && (
             <CurrentLogo className="h-10 w-10 md:h-12 md:w-12 max-h-[60%] max-w-[60%] object-contain text-[#00E5FF] filter drop-shadow-[#00E5FF]/30" />
           )}
-          <span className="text-[11px] font-mono font-bold text-slate-200 mt-1 truncate max-w-full">
+          <span className="text-[11px] font-mono font-bold text-slate-200 mt-1 leading-snug max-w-full">
             {logoName}
           </span>
         </motion.div>
@@ -118,7 +118,7 @@ export function LogoCarousel({ columnCount = 3, logos = [] }) {
   }, [logos, columnCount]);
 
   return (
-    <div className="flex gap-3 md:gap-5 justify-center flex-wrap">
+    <div className="grid w-full grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 md:gap-5">
       {logoSets.map((logos, index) => (
         <LogoColumn
           key={index}

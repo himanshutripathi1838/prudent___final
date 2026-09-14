@@ -1,7 +1,6 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Cpu, ArrowRight, ChevronDown } from 'lucide-react';
+import { ArrowRight, ChevronLeft, ChevronRight, ChevronDown, Cpu } from 'lucide-react';
 
 const PROJECT_DATA = [
   {
@@ -61,378 +60,49 @@ const PROJECT_DATA = [
   }
 ];
 
-const CONFIG = {
-  SCROLL_SPEED: 0.75,
-  LERP_FACTOR: 0.06,
-  BUFFER_SIZE: 5,
-  MAX_VELOCITY: 150,
-  SNAP_DURATION: 500,
-};
-
-const lerp = (start, end, factor) =>
-  start + (end - start) * factor;
-
-const getProjectData = (index) => {
-  const i =
-    ((Math.abs(index) % PROJECT_DATA.length) + PROJECT_DATA.length) %
-    PROJECT_DATA.length;
-  return PROJECT_DATA[i];
-};
-
 export default function InfiniteParallaxSlider({ onDemoRequest, onScrollDownNext }) {
   const navigate = useNavigate();
-
-  const [visibleRange, setVisibleRange] = useState({
-    min: -CONFIG.BUFFER_SIZE,
-    max: CONFIG.BUFFER_SIZE,
-  });
-
-  const [photosCompleted, setPhotosCompleted] = useState(false);
-  const [photoStep, setPhotoStep] = useState(1);
-
-  const state = useRef({
-    currentY: 0,
-    targetY: 0,
-    isDragging: false,
-    isSnapping: false,
-    snapStart: { time: 0, y: 0, target: 0 },
-    lastScrollTime: Date.now(),
-    dragStart: { y: 0, scrollY: 0 },
-    projectHeight: typeof window !== 'undefined' ? window.innerHeight : 900,
-    photosScrolledCount: 0,
-    isCompleted: false
-  });
-
-  const projectsRef = useRef(new Map());
-  const requestRef = useRef();
-  const containerRef = useRef(null);
-
-  const updateParallax = (img, scroll, index, height) => {
-    if (!img) return;
-    if (!img.dataset.parallaxCurrent) {
-      img.dataset.parallaxCurrent = "0";
-    }
-    
-    let current = parseFloat(img.dataset.parallaxCurrent);
-    const target = (-scroll - index * height) * 0.25;
-    current = lerp(current, target, 0.1);
-    
-    if (Math.abs(current - target) > 0.01) {
-      img.style.transform = `translateY(${current}px) scale(1.45)`;
-      img.dataset.parallaxCurrent = current.toString();
-    }
-  };
-
-  const updateSnap = () => {
-    const s = state.current;
-    const progress = Math.min(
-      (Date.now() - s.snapStart.time) / CONFIG.SNAP_DURATION,
-      1
-    );
-    const eased = 1 - Math.pow(1 - progress, 3);
-    s.targetY =
-      s.snapStart.y + (s.snapStart.target - s.snapStart.y) * eased;
-    if (progress >= 1) s.isSnapping = false;
-  };
-
-  const snapToProject = () => {
-    const s = state.current;
-    const current = Math.round(-s.targetY / s.projectHeight);
-    const target = -current * s.projectHeight;
-    s.isSnapping = true;
-    s.snapStart = {
-      time: Date.now(),
-      y: s.targetY,
-      target: target,
-    };
-  };
-
-  const animationLoop = () => {
-    const s = state.current;
-    if (s.isSnapping) updateSnap();
-
-    s.currentY = lerp(s.currentY, s.targetY, CONFIG.LERP_FACTOR);
-
-    if (!s.isDragging && !s.isSnapping && Date.now() - s.lastScrollTime > 150) {
-      snapToProject();
-    }
-
-    const currentProjectIndex = Math.round(-s.currentY / s.projectHeight);
-    const newStep = ((Math.abs(currentProjectIndex) % PROJECT_DATA.length) + 1);
-    if (newStep !== photoStep) {
-      setPhotoStep(newStep);
-    }
-
-    const margin = CONFIG.BUFFER_SIZE;
-    if (
-      currentProjectIndex - margin !== visibleRange.min ||
-      currentProjectIndex + margin !== visibleRange.max
-    ) {
-      setVisibleRange({
-        min: currentProjectIndex - margin,
-        max: currentProjectIndex + margin,
-      });
-    }
-
-    indices.forEach((i) => {
-      const proj = projectsRef.current.get(i);
-      if (proj) {
-        const y = s.currentY + i * s.projectHeight;
-        proj.style.transform = `translateY(${y}px)`;
-        const img = proj.querySelector("img");
-        updateParallax(img, s.currentY, i, s.projectHeight);
-      }
-    });
-
-    requestRef.current = requestAnimationFrame(animationLoop);
-  };
-
-  useEffect(() => {
-    const handleResize = () => {
-      state.current.projectHeight = window.innerHeight;
-    };
-    window.addEventListener("resize", handleResize);
-
-    const container = containerRef.current;
-
-    const onWheel = (e) => {
-      const s = state.current;
-      if (!s.isCompleted) {
-        if (e.deltaY > 0) {
-          e.preventDefault();
-          s.isSnapping = false;
-          s.lastScrollTime = Date.now();
-          s.photosScrolledCount += 1;
-          s.targetY -= s.projectHeight;
-
-          if (s.photosScrolledCount >= PROJECT_DATA.length * 1.5) {
-            s.isCompleted = true;
-            setPhotosCompleted(true);
-            if (onScrollDownNext) {
-              onScrollDownNext();
-            }
-          }
-        } else if (e.deltaY < 0 && s.photosScrolledCount > 0) {
-          e.preventDefault();
-          s.isSnapping = false;
-          s.lastScrollTime = Date.now();
-          s.photosScrolledCount = Math.max(0, s.photosScrolledCount - 1);
-          s.targetY += s.projectHeight;
-        }
-      }
-    };
-
-    const onTouchStart = (e) => {
-      const s = state.current;
-      s.isDragging = true;
-      s.isSnapping = false;
-      s.dragStart = { y: e.touches[0].clientY, scrollY: s.targetY };
-      s.lastScrollTime = Date.now();
-    };
-
-    const onTouchMove = (e) => {
-      const s = state.current;
-      if (!s.isDragging) return;
-      s.targetY =
-        s.dragStart.scrollY +
-        (e.touches[0].clientY - s.dragStart.y) * 1.5;
-      s.lastScrollTime = Date.now();
-    };
-
-    const onTouchEnd = () => {
-      state.current.isDragging = false;
-    };
-
-    if (container) {
-      container.addEventListener("wheel", onWheel, { passive: false });
-      container.addEventListener("touchstart", onTouchStart);
-      container.addEventListener("touchmove", onTouchMove);
-      container.addEventListener("touchend", onTouchEnd);
-    }
-    
-    requestRef.current = requestAnimationFrame(animationLoop);
-
-    return () => {
-      window.removeEventListener("resize", handleResize);
-      if (container) {
-        container.removeEventListener("wheel", onWheel);
-        container.removeEventListener("touchstart", onTouchStart);
-        container.removeEventListener("touchmove", onTouchMove);
-        container.removeEventListener("touchend", onTouchEnd);
-      }
-      if (requestRef.current) cancelAnimationFrame(requestRef.current);
-    };
-  }, []);
-
-  const scrollToNext = () => {
-    state.current.isCompleted = true;
-    setPhotosCompleted(true);
-    if (onScrollDownNext) {
-      onScrollDownNext();
-    } else {
-      window.scrollTo({ top: window.innerHeight * 0.95, behavior: 'smooth' });
-    }
-  };
-
-  const indices = [];
-  for (let i = visibleRange.min; i <= visibleRange.max; i++) {
-    indices.push(i);
-  }
-
-  // Active Project Data based on photoStep
-  const activeData = PROJECT_DATA[(photoStep - 1) % PROJECT_DATA.length];
+  const [activeIndex, setActiveIndex] = useState(0);
+  const touchStart = useRef(null);
+  const activeData = PROJECT_DATA[activeIndex];
+  const changeSlide = (direction) => setActiveIndex(index => (index + direction + PROJECT_DATA.length) % PROJECT_DATA.length);
 
   return (
-    <div ref={containerRef} className="parallax-container relative w-full h-screen">
-      
-      {/* Background Fullscreen Parallax Project Images */}
-      <ul className="project-list">
-        {indices.map((i) => {
-          const data = getProjectData(i);
-          return (
-            <div
-              key={i}
-              className="project"
-              ref={(el) => {
-                if (el) projectsRef.current.set(i, el);
-                else projectsRef.current.delete(i);
-              }}
-            >
-              <img src={data.image} alt={data.title} className="opacity-30 dark:opacity-80" />
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-100/90 via-slate-100/70 to-slate-100/50 dark:from-[#0B0F17] dark:via-[#0B0F17]/40 dark:to-[#0B0F17]/30 pointer-events-none" />
-            </div>
-          );
-        })}
-      </ul>
-
-      {/* Floating Dynamic Hero Text */}
-      <div className="absolute top-1/2 -translate-y-1/2 left-4 sm:left-12 lg:left-20 z-20 max-w-xl px-4 pointer-events-auto">
-        <div className="space-y-4">
-          
-          {/* Dynamic Badge & Platform Counter */}
-          <div className="flex items-center justify-between gap-3">
-            <AnimatePresence mode="wait">
-              <motion.span
-                key={activeData.badge}
-                initial={{ opacity: 0, y: -6 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: 6 }}
-                transition={{ duration: 0.3 }}
-                className="uppercase text-[10px] sm:text-[11px] font-mono tracking-[0.08em] text-[#0284C7] dark:text-[#00E5FF] bg-white/90 dark:bg-[#0B0F17]/60 backdrop-blur-md px-3 py-1 rounded-full border border-[#0284C7]/40 dark:border-[#00E5FF]/40 inline-flex items-center gap-2 shadow-lg"
-              >
-                <span className="w-1.5 h-1.5 rounded-full bg-[#0284C7] dark:bg-[#00E5FF] animate-ping shrink-0" />
-                <span className="truncate">{activeData.badge}</span>
-              </motion.span>
-            </AnimatePresence>
-
-            <span className="text-[11px] font-mono font-extrabold text-[#D97706] dark:text-[#F2A623] bg-white/90 dark:bg-[#0B0F17]/60 backdrop-blur-md px-3 py-1 rounded-full border border-[#D97706]/40 dark:border-[#F2A623]/40 shrink-0 shadow-lg">
-              Platform {photoStep} / 5
-            </span>
+    <div className="responsive-hero relative isolate w-full overflow-hidden bg-[#0B0F17]" role="region" aria-label="Industrial platforms" aria-roledescription="carousel"
+      onTouchStart={event => { touchStart.current = { x: event.touches[0].clientX, y: event.touches[0].clientY }; }}
+      onTouchEnd={event => {
+        if (!touchStart.current) return;
+        const dx = event.changedTouches[0].clientX - touchStart.current.x;
+        const dy = event.changedTouches[0].clientY - touchStart.current.y;
+        if (Math.abs(dx) > 60 && Math.abs(dx) > Math.abs(dy) * 1.5) changeSlide(dx < 0 ? 1 : -1);
+        touchStart.current = null;
+      }}>
+      <img src={activeData.image} alt="" className="absolute inset-0 -z-20 h-full w-full object-cover opacity-40" />
+      <div className="absolute inset-0 -z-10 bg-gradient-to-r from-slate-100 via-slate-100/90 to-slate-100/50 dark:from-[#0B0F17] dark:via-[#0B0F17]/85 dark:to-[#0B0F17]/30" />
+      <div className="mx-auto w-full max-w-[1440px] px-4 py-12 sm:px-8 sm:py-16 lg:px-16">
+        <div className="max-w-2xl space-y-6">
+          <div className="flex flex-wrap items-center gap-3">
+            <span className="max-w-full rounded-2xl border border-sky-500/40 bg-white/80 px-3 py-2 text-xs font-mono text-sky-700 dark:bg-slate-950/70 dark:text-cyan-300">{activeData.badge}</span>
+            <span className="text-xs font-mono text-amber-700 dark:text-amber-300">Platform {activeIndex + 1} / {PROJECT_DATA.length}</span>
           </div>
-
-          {/* Dynamic Headline Text changing smoothly with each image */}
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={activeData.title}
-              initial={{ opacity: 0, y: 12 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -12 }}
-              transition={{ duration: 0.35, ease: "easeOut" }}
-              className="space-y-2"
-            >
-              <h1 className="text-2xl sm:text-4xl lg:text-[40px] font-extrabold text-slate-900 dark:text-white tracking-tight leading-[1.2] drop-shadow-sm dark:drop-shadow-[0_4px_16px_rgba(0,0,0,0.9)]">
-                {activeData.headlineLine1} <br />
-                <span className="bg-gradient-to-r from-slate-900 via-slate-700 to-[#0284C7] dark:from-white dark:via-slate-100 dark:to-[#00E5FF] bg-clip-text text-transparent">
-                  {activeData.headlineLine2}
-                </span>
-              </h1>
-
-              <p className="text-xs sm:text-sm lg:text-[15px] font-normal text-slate-700 dark:text-slate-300 leading-relaxed font-sans pt-1 max-w-lg drop-shadow-sm dark:drop-shadow-[0_2px_10px_rgba(0,0,0,0.9)]">
-                {activeData.detailText}
-              </p>
-            </motion.div>
-          </AnimatePresence>
-
-          <div className="flex flex-col sm:flex-row items-center gap-3 pt-2">
-            <button
-              onClick={() => navigate('/solution-portfolio')}
-              className="w-full sm:w-auto px-6 py-3 rounded-xl text-slate-950 bg-[#00E5FF] hover:bg-[#52F1FF] font-bold text-sm transition-all shadow-lg hover:shadow-[0_0_25px_rgba(0,229,255,0.7)] flex items-center justify-center gap-2 active:scale-95 cursor-pointer"
-            >
-              <span>Explore Solutions</span>
-              <ArrowRight className="w-4 h-4" />
-            </button>
-
-            <button
-              onClick={onDemoRequest}
-              className="w-full sm:w-auto px-6 py-3 rounded-xl text-slate-900 dark:text-white bg-white/90 dark:bg-[#0B0F17]/80 hover:bg-slate-200 dark:hover:bg-[#00E5FF]/20 backdrop-blur-md border border-slate-300 dark:border-slate-600 hover:border-[#0284C7] dark:hover:border-[#00E5FF] font-bold text-sm transition-all flex items-center justify-center gap-2 shadow-lg cursor-pointer"
-            >
-              <span>Request Demo</span>
-              <Cpu className="w-4 h-4 text-[#0284C7] dark:text-[#00E5FF]" />
-            </button>
+          <div className="space-y-4" aria-live="polite" aria-atomic="true">
+            <h1 className="text-3xl font-extrabold leading-tight tracking-tight text-slate-900 sm:text-4xl lg:text-5xl dark:text-white">
+              {activeData.headlineLine1.replace(/ \u2014$/, '')}<br /><span className="text-sky-700 dark:text-cyan-300">{activeData.headlineLine2}</span>
+            </h1>
+            <p className="max-w-xl text-base leading-relaxed text-slate-700 dark:text-slate-300">{activeData.detailText}</p>
           </div>
+          <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+            <button onClick={() => navigate('/solution-portfolio')} className="flex min-h-12 items-center justify-center gap-2 rounded-xl bg-[#00E5FF] px-6 py-3 text-sm font-bold text-slate-950 hover:bg-[#52F1FF]">Explore Solutions <ArrowRight className="h-4 w-4 shrink-0" /></button>
+            <button onClick={onDemoRequest} className="flex min-h-12 items-center justify-center gap-2 rounded-xl border border-slate-400 bg-white/80 px-6 py-3 text-sm font-bold text-slate-900 dark:bg-slate-950/80 dark:text-white">Request Demo <Cpu className="h-4 w-4 shrink-0" /></button>
+          </div>
+          <div className="flex flex-wrap items-center gap-3 pt-4">
+            <button onClick={() => changeSlide(-1)} aria-label="Previous platform" className="hero-control"><ChevronLeft className="h-5 w-5" /></button>
+            <span className="min-w-0 flex-1 text-sm font-semibold text-slate-800 dark:text-slate-200 sm:flex-none">{activeData.title}</span>
+            <button onClick={() => changeSlide(1)} aria-label="Next platform" className="hero-control"><ChevronRight className="h-5 w-5" /></button>
+          </div>
+          <button onClick={onScrollDownNext} className="flex min-h-11 items-center gap-2 text-sm font-semibold text-sky-700 dark:text-cyan-300">Explore Prudent Systems <ChevronDown className="h-5 w-5" /></button>
         </div>
       </div>
-
-      {/* Clean & Elegant Interactive Minimap (Bottom Right) - Zero Text Overlap */}
-      <div className="minimap pointer-events-auto shadow-2xl">
-        <div className="minimap-wrapper flex w-full h-full bg-[#0B0F17]/90 backdrop-blur-xl rounded-2xl overflow-hidden border border-[#00E5FF]/40">
-          
-          {/* Minimap Active Thumbnail Image */}
-          <div className="w-[40%] h-full relative overflow-hidden bg-slate-950 shrink-0">
-            <AnimatePresence mode="wait">
-              <motion.img
-                key={activeData.title}
-                src={activeData.image}
-                alt={activeData.title}
-                initial={{ opacity: 0, scale: 1.15 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.3 }}
-                className="w-full h-full object-cover"
-              />
-            </AnimatePresence>
-          </div>
-
-          {/* Minimap Active Info Card */}
-          <div className="w-[60%] h-full p-3 sm:p-4 flex flex-col justify-center gap-1 font-mono text-white overflow-hidden">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={activeData.title}
-                initial={{ opacity: 0, y: 8 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -8 }}
-                transition={{ duration: 0.25 }}
-                className="space-y-1"
-              >
-                <div className="flex items-center justify-between text-xs font-bold text-[#00E5FF]">
-                  <span>0{photoStep}</span>
-                  <span className="truncate max-w-[110px]">{activeData.title}</span>
-                </div>
-                <div className="flex items-center justify-between text-[10px] text-slate-400">
-                  <span>{activeData.category}</span>
-                  <span>{activeData.year}</span>
-                </div>
-                <div className="text-[10px] text-slate-300 truncate">
-                  {activeData.description}
-                </div>
-              </motion.div>
-            </AnimatePresence>
-          </div>
-
-        </div>
-      </div>
-
-      {/* Clickable Scroll Down Arrow Button */}
-      <button
-        onClick={scrollToNext}
-        className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 text-slate-300 hover:text-[#00E5FF] text-xs font-mono animate-bounce z-30 cursor-pointer pointer-events-auto group"
-      >
-        <span className="group-hover:underline">
-          {photosCompleted ? "SCROLL DOWN TO PAGE" : "SCROLL THROUGH PHOTOS (" + photoStep + "/5)"}
-        </span>
-        <ChevronDown className="w-5 h-5 text-[#00E5FF] group-hover:scale-125 transition-transform" />
-      </button>
-
     </div>
   );
 }

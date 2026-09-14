@@ -53,10 +53,10 @@ export default function OtaArchitectureDiagram() {
   };
 
   return (
-    <div className="p-8 sm:p-12 rounded-3xl bg-[#121A28] border border-[#00C2CB]/40 shadow-2xl space-y-10">
+    <div className="p-4 sm:p-6 lg:p-10 rounded-3xl bg-[#121A28] border border-[#00C2CB]/40 shadow-2xl space-y-10">
       
       {/* Header */}
-      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-b border-slate-800 pb-6">
+      <div className="flex flex-col lg:flex-row items-start sm:items-center justify-between gap-4 border-b border-slate-800 pb-6">
         <div>
           <span className="px-3 py-1 rounded-full text-xs font-mono font-bold bg-[#00C2CB]/20 text-[#00C2CB] border border-[#00C2CB]/40 uppercase inline-block mb-2">
             A/B Dual-Partition Flash Architecture
@@ -80,12 +80,12 @@ export default function OtaArchitectureDiagram() {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         
         {/* Partition A */}
-        <div className={`p-6 rounded-2xl border transition-all ${
+        <div className={`p-4 sm:p-6 rounded-2xl border transition-all ${
           partitionState.partitionA.status === 'SUCCESS' || partitionState.partitionA.status === 'RUNNING'
             ? 'bg-[#0A0E14] border-emerald-500/50 shadow-[0_0_20px_rgba(16,185,129,0.15)]'
             : 'bg-[#0A0E14]/60 border-slate-800 opacity-60'
         }`}>
-          <div className="flex items-center justify-between mb-3">
+          <div className="flex flex-wrap items-center justify-between gap-2 mb-3">
             <span className="text-xs font-mono font-bold text-white uppercase">Flash Partition A (Primary)</span>
             <span className="px-2.5 py-0.5 rounded text-[10px] font-mono font-bold bg-emerald-500/20 text-emerald-400 border border-emerald-500/40">
               {partitionState.partitionA.status}
@@ -98,14 +98,14 @@ export default function OtaArchitectureDiagram() {
         </div>
 
         {/* Partition B */}
-        <div className={`p-6 rounded-2xl border transition-all ${
+        <div className={`p-4 sm:p-6 rounded-2xl border transition-all ${
           partitionState.partitionB.status === 'SUCCESS'
             ? 'bg-[#0A0E14] border-emerald-500/50 shadow-[0_0_20px_rgba(16,185,129,0.2)]'
             : partitionState.partitionB.status === 'FLASHING' || partitionState.partitionB.status === 'SELF TEST'
             ? 'bg-[#0A0E14] border-[#F2A623] shadow-[0_0_20px_rgba(242,166,35,0.2)] animate-pulse'
             : 'bg-[#0A0E14]/60 border-slate-800'
         }`}>
-          <div className="flex items-center justify-between mb-3">
+          <div className="flex flex-wrap items-center justify-between gap-2 mb-3">
             <span className="text-xs font-mono font-bold text-white uppercase">Flash Partition B (Staging / Backup)</span>
             <span className="px-2.5 py-0.5 rounded text-[10px] font-mono font-bold bg-[#F2A623]/20 text-[#F2A623] border border-[#F2A623]/40">
               {partitionState.partitionB.status}

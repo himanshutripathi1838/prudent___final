@@ -76,16 +76,16 @@ export default function Navbar() {
     <>
       <header
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-          isScrolled
+          (isScrolled || mobileMenuOpen)
             ? 'bg-[#060B12]/90 backdrop-blur-xl border-b border-[#1E293B] shadow-2xl shadow-black/80 py-3.5'
             : 'bg-transparent py-5'
         }`}
       >
-        <div className="max-w-[1440px] mx-auto px-6 sm:px-10 lg:px-16">
+        <div className="max-w-[1440px] mx-auto px-3 sm:px-8 lg:px-10 xl:px-16">
           <div className="flex items-center justify-between">
             
             {/* Left: Official Red Prudent Systems Logo */}
-            <NavLink to="/" className="flex items-center gap-3 group">
+            <NavLink to="/" className="flex min-w-0 items-center gap-2 sm:gap-3 group">
               <div className="w-10 h-10 rounded-xl bg-black p-1 shadow-lg shadow-red-500/30 group-hover:scale-105 transition-all border border-slate-700/80 flex items-center justify-center shrink-0 overflow-hidden">
                 <img
                   src="/images/prudent_systems_official_logo.png"
@@ -94,7 +94,7 @@ export default function Navbar() {
                 />
               </div>
               <div className="flex flex-col">
-                <span className="text-lg font-extrabold tracking-tight text-white flex items-center gap-1 font-sans">
+                <span className="text-sm sm:text-lg font-extrabold tracking-tight text-white flex items-center gap-1 font-sans">
                   PRUDENT <span className="text-[#00E5FF]">SYSTEMS</span>
                 </span>
                 <span className="text-[9px] tracking-[0.18em] text-[#00E5FF] font-mono -mt-1 uppercase font-bold">
@@ -104,7 +104,7 @@ export default function Navbar() {
             </NavLink>
 
             {/* Center: Desktop Nav Links */}
-            <nav className="hidden lg:flex items-center gap-2">
+            <nav className="hidden xl:flex items-center gap-2">
               {navLinks.map((link) => (
                 <NavLink
                   key={link.name}
@@ -123,7 +123,7 @@ export default function Navbar() {
             </nav>
 
             {/* Right: Action Buttons & Theme Toggle */}
-            <div className="hidden lg:flex items-center gap-3">
+            <div className="hidden xl:flex items-center gap-3">
               {/* Theme Toggle Button */}
               <button
                 onClick={toggleTheme}
@@ -148,17 +148,20 @@ export default function Navbar() {
             </div>
 
             {/* Mobile Menu Toggle Button */}
-            <div className="flex lg:hidden items-center gap-2">
+            <div className="flex xl:hidden items-center gap-2">
               <button
                 onClick={toggleTheme}
-                className="p-2 rounded-xl bg-[#0E1522] border border-slate-800 text-amber-400"
+                className="p-2 min-h-11 min-w-11 rounded-xl bg-[#0E1522] border border-slate-800 text-amber-400"
                 aria-label="Toggle Theme"
               >
                 {theme === 'dark' ? <Sun className="w-5 h-5 text-amber-400" /> : <Moon className="w-5 h-5 text-sky-500" />}
               </button>
               <button
+                aria-label={mobileMenuOpen ? "Close navigation" : "Open navigation"}
+                aria-expanded={mobileMenuOpen}
+                aria-controls="mobile-navigation"
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                className="p-2 rounded-xl bg-[#0E1522] border border-slate-800 text-slate-200"
+                className="p-2 min-h-11 min-w-11 rounded-xl bg-[#0E1522] border border-slate-800 text-slate-200"
               >
                 {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
               </button>
@@ -169,7 +172,7 @@ export default function Navbar() {
 
         {/* Mobile Dropdown Menu */}
         {mobileMenuOpen && (
-          <div className="lg:hidden bg-[#060B12]/95 backdrop-blur-2xl border-b border-slate-800 px-6 pt-4 pb-6 space-y-3 mt-2 shadow-2xl">
+          <div id="mobile-navigation" className="max-h-[calc(100dvh-90px)] overflow-y-auto overscroll-contain xl:hidden bg-[#060B12]/95 backdrop-blur-2xl border-b border-slate-800 px-6 pt-4 pb-6 space-y-3 mt-2 shadow-2xl">
             {navLinks.map((link) => (
               <NavLink
                 key={link.name}

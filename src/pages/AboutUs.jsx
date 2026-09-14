@@ -128,7 +128,7 @@ export default function AboutUs() {
             subtitle="Pioneering industrial telemetry and automated intelligence to power national infrastructure."
           />
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             
             {/* Mission Card */}
             <motion.div
@@ -136,7 +136,7 @@ export default function AboutUs() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.1 }}
-              className="p-8 rounded-3xl bg-[#0E1522] border border-slate-800 hover:border-[#00E5FF]/50 transition-all duration-300 flex flex-col justify-between group"
+              className="p-5 sm:p-8 rounded-3xl bg-[#0E1522] border border-slate-800 hover:border-[#00E5FF]/50 transition-all duration-300 flex flex-col justify-between group"
             >
               <div>
                 <div className="w-14 h-14 rounded-2xl bg-[#00E5FF]/10 border border-[#00E5FF]/30 flex items-center justify-center text-[#00E5FF] mb-6 group-hover:scale-110 transition-transform">
@@ -161,7 +161,7 @@ export default function AboutUs() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.2 }}
-              className="p-8 rounded-3xl bg-[#0E1522] border border-slate-800 hover:border-[#00E5FF]/50 transition-all duration-300 flex flex-col justify-between group"
+              className="p-5 sm:p-8 rounded-3xl bg-[#0E1522] border border-slate-800 hover:border-[#00E5FF]/50 transition-all duration-300 flex flex-col justify-between group"
             >
               <div>
                 <div className="w-14 h-14 rounded-2xl bg-[#00E5FF]/10 border border-[#00E5FF]/30 flex items-center justify-center text-[#00E5FF] mb-6 group-hover:scale-110 transition-transform">
@@ -186,7 +186,7 @@ export default function AboutUs() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.3 }}
-              className="p-8 rounded-3xl bg-[#0E1522] border border-slate-800 hover:border-[#00E5FF]/50 transition-all duration-300 flex flex-col justify-between group"
+              className="p-5 sm:p-8 rounded-3xl bg-[#0E1522] border border-slate-800 hover:border-[#00E5FF]/50 transition-all duration-300 flex flex-col justify-between group"
             >
               <div>
                 <div className="w-14 h-14 rounded-2xl bg-[#00E5FF]/10 border border-[#00E5FF]/30 flex items-center justify-center text-[#00E5FF] mb-6 group-hover:scale-110 transition-transform">
@@ -254,7 +254,7 @@ export default function AboutUs() {
               initial={{ opacity: 0, x: 30 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              className="lg:col-span-6 p-8 rounded-3xl bg-[#0E1522] border border-slate-800 shadow-2xl space-y-6"
+              className="lg:col-span-6 p-5 sm:p-8 rounded-3xl bg-[#0E1522] border border-slate-800 shadow-2xl space-y-6"
             >
               <h3 className="text-xl font-bold text-white font-sans flex items-center gap-2">
                 <Activity className="w-5 h-5 text-[#00E5FF]" />

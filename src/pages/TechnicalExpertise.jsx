@@ -75,7 +75,7 @@ export default function TechnicalExpertise() {
                   key={idx}
                   variants={cardVariants}
                   whileHover={{ y: -8, transition: { duration: 0.25 } }}
-                  className="p-8 rounded-3xl bg-[#121824] border border-[#1E293B] hover:border-[#00C2CB]/50 hover:shadow-2xl hover:shadow-[#00C2CB]/10 transition-all duration-300 flex flex-col justify-between group"
+                  className="p-5 sm:p-8 rounded-3xl bg-[#121824] border border-[#1E293B] hover:border-[#00C2CB]/50 hover:shadow-2xl hover:shadow-[#00C2CB]/10 transition-all duration-300 flex flex-col justify-between group"
                 >
                   <div>
                     <div className="w-12 h-12 rounded-xl bg-[#00C2CB]/10 border border-[#00C2CB]/30 flex items-center justify-center text-[#00C2CB] mb-4 group-hover:scale-110 group-hover:bg-[#00C2CB] group-hover:text-slate-950 transition-all duration-300">

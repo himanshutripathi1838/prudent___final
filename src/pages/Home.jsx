@@ -56,7 +56,7 @@ export default function Home() {
       />
 
       {/* 1. FULLSCREEN 100VH INFINITE PARALLAX SLIDER HERO SECTION */}
-      <section className="relative w-full h-screen overflow-hidden border-b border-[#1E2D4A]">
+      <section className="relative w-full overflow-hidden border-b border-[#1E2D4A]">
         <InfiniteParallaxSlider
           onDemoRequest={() => setDemoModalOpen(true)}
           onScrollDownNext={scrollToAboutSection}

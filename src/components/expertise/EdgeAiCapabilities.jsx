@@ -27,7 +27,7 @@ export default function EdgeAiCapabilities() {
   ];
 
   return (
-    <div className="p-8 sm:p-12 rounded-3xl bg-[#121A28] border border-[#00C2CB]/40 shadow-2xl space-y-8">
+    <div className="p-4 sm:p-8 lg:p-12 rounded-3xl bg-[#121A28] border border-[#00C2CB]/40 shadow-2xl space-y-8">
       <div>
         <span className="px-3 py-1 rounded-full text-xs font-mono font-bold bg-[#00C2CB]/20 text-[#00C2CB] border border-[#00C2CB]/40 uppercase inline-block mb-2">
           On-Device Intelligence & ML OTA

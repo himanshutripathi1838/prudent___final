@@ -138,7 +138,7 @@ export default function Career() {
       {/* 4. Internship & Research Opportunities */}
       <section className="py-20 bg-[#0A0E14] border-b border-[#1E293B]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="p-8 sm:p-12 rounded-3xl bg-gradient-to-r from-[#121824] via-[#162032] to-[#121824] border border-[#00C2CB]/30 relative overflow-hidden shadow-2xl">
+          <div className="p-5 sm:p-8 lg:p-12 rounded-3xl bg-gradient-to-r from-[#121824] via-[#162032] to-[#121824] border border-[#00C2CB]/30 relative overflow-hidden shadow-2xl">
             <div className="absolute top-0 right-0 w-96 h-96 bg-[#00C2CB]/10 rounded-full blur-3xl pointer-events-none" />
 
             <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
