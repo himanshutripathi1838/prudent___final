@@ -1,6 +1,6 @@
 import React, { useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ArrowRight, ChevronLeft, ChevronRight, ChevronDown, Cpu } from 'lucide-react';
+import { ArrowRight, ChevronDown, Cpu } from 'lucide-react';
 
 const PROJECT_DATA = [
   {
@@ -64,11 +64,32 @@ export default function InfiniteParallaxSlider({ onDemoRequest, onScrollDownNext
   const navigate = useNavigate();
   const [activeIndex, setActiveIndex] = useState(0);
   const touchStart = useRef(null);
+  const lastWheelChange = useRef(0);
   const activeData = PROJECT_DATA[activeIndex];
   const changeSlide = (direction) => setActiveIndex(index => (index + direction + PROJECT_DATA.length) % PROJECT_DATA.length);
+  const handleWheel = (event) => {
+    const direction = Math.sign(event.deltaY);
+    if (!direction) return;
+
+    const now = Date.now();
+    if (now - lastWheelChange.current < 550) {
+      event.preventDefault();
+      return;
+    }
+
+    if (direction > 0 && activeIndex === PROJECT_DATA.length - 1) {
+      onScrollDownNext?.();
+      return;
+    }
+
+    event.preventDefault();
+    lastWheelChange.current = now;
+    changeSlide(direction);
+  };
 
   return (
     <div className="responsive-hero relative isolate w-full overflow-hidden bg-[#0B0F17]" role="region" aria-label="Industrial platforms" aria-roledescription="carousel"
+      onWheel={handleWheel}
       onTouchStart={event => { touchStart.current = { x: event.touches[0].clientX, y: event.touches[0].clientY }; }}
       onTouchEnd={event => {
         if (!touchStart.current) return;
@@ -94,11 +115,6 @@ export default function InfiniteParallaxSlider({ onDemoRequest, onScrollDownNext
           <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
             <button onClick={() => navigate('/solution-portfolio')} className="flex min-h-12 items-center justify-center gap-2 rounded-xl bg-[#00E5FF] px-6 py-3 text-sm font-bold text-slate-950 hover:bg-[#52F1FF]">Explore Solutions <ArrowRight className="h-4 w-4 shrink-0" /></button>
             <button onClick={onDemoRequest} className="flex min-h-12 items-center justify-center gap-2 rounded-xl border border-slate-400 bg-white/80 px-6 py-3 text-sm font-bold text-slate-900 dark:bg-slate-950/80 dark:text-white">Request Demo <Cpu className="h-4 w-4 shrink-0" /></button>
-          </div>
-          <div className="flex flex-wrap items-center gap-3 pt-4">
-            <button onClick={() => changeSlide(-1)} aria-label="Previous platform" className="hero-control"><ChevronLeft className="h-5 w-5" /></button>
-            <span className="min-w-0 flex-1 text-sm font-semibold text-slate-800 dark:text-slate-200 sm:flex-none">{activeData.title}</span>
-            <button onClick={() => changeSlide(1)} aria-label="Next platform" className="hero-control"><ChevronRight className="h-5 w-5" /></button>
           </div>
           <button onClick={onScrollDownNext} className="flex min-h-11 items-center gap-2 text-sm font-semibold text-sky-700 dark:text-cyan-300">Explore Prudent Systems <ChevronDown className="h-5 w-5" /></button>
         </div>
