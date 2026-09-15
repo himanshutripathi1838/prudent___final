@@ -93,8 +93,8 @@ export default function InfiniteParallaxSlider({ onDemoRequest, onScrollDownNext
         if (Math.abs(dx) > 60 && Math.abs(dx) > Math.abs(dy) * 1.5) changeSlide(dx < 0 ? 1 : -1);
         touchStart.current = null;
       }}>
-      <img src={activeData.image} alt="" className="absolute inset-0 -z-20 h-full w-full object-cover opacity-40" />
-      <div className="absolute inset-0 -z-10 bg-gradient-to-r from-slate-100 via-slate-100/90 to-slate-100/50 dark:from-[#0B0F17] dark:via-[#0B0F17]/85 dark:to-[#0B0F17]/30" />
+      <img src={activeData.image} alt="" className="hero-background-image absolute inset-0 -z-20 h-full w-full object-cover" />
+      <div className="hero-background-overlay absolute inset-0 -z-10" />
       <div className="mx-auto w-full max-w-[1440px] px-4 py-12 sm:px-8 sm:py-16 lg:px-16">
         <div className="max-w-2xl space-y-6">
           <div className="flex flex-wrap items-center gap-3">
