@@ -32,7 +32,7 @@ export default function AboutUs() {
               <p>Prudent Systems Pvt. Ltd. develops hardware and software solutions for industrial data capture, monitoring and automation.</p>
               <p>Our work connects sensors, communication systems and software so organizations can view field information and make informed operational decisions.</p>
             </div>
-            <button onClick={() => navigate('/contact-us')} className="inline-flex min-h-12 items-center gap-2 rounded-xl bg-[#00E5FF] px-6 py-3 text-sm font-bold text-slate-950">Discuss your requirement <ArrowRight className="h-4 w-4" /></button>
+            <button onClick={() => navigate('/contact-us#contact-form')} className="inline-flex min-h-12 items-center gap-2 rounded-xl bg-[#00E5FF] px-6 py-3 text-sm font-bold text-slate-950">Discuss your requirement <ArrowRight className="h-4 w-4" /></button>
           </motion.div>
         </div>
       </section>

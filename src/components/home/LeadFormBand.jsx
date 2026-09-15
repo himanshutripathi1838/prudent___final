@@ -1,7 +1,6 @@
 import React from 'react';
 import { ArrowRight, Mail } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
-import { companyInfo } from '../../data/companyData';
 
 export default function LeadFormBand() {
   const navigate = useNavigate();
@@ -14,7 +13,7 @@ export default function LeadFormBand() {
         <p className="mx-auto mt-4 max-w-2xl leading-relaxed text-slate-300">Share your sensing, data acquisition, connectivity or automation requirement with Prudent Systems.</p>
         <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
           <button onClick={() => navigate('/contact-us#contact-form')} className="flex min-h-12 items-center justify-center gap-2 rounded-xl bg-[#00E5FF] px-6 font-bold text-slate-950">Contact Our Team <ArrowRight className="h-4 w-4" /></button>
-          <a href={`mailto:${companyInfo.email}`} className="flex min-h-12 items-center justify-center gap-2 rounded-xl border border-slate-600 px-6 font-semibold text-white hover:border-[#00E5FF] hover:text-[#00E5FF]"><Mail className="h-4 w-4" />{companyInfo.email}</a>
+          <button onClick={() => navigate('/contact-us#contact-form')} className="flex min-h-12 items-center justify-center gap-2 rounded-xl border border-slate-600 px-6 font-semibold text-white hover:border-[#00E5FF] hover:text-[#00E5FF]"><Mail className="h-4 w-4" />Contact Us</button>
         </div>
       </div>
     </div>

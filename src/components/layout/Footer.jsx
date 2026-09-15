@@ -33,8 +33,8 @@ export default function Footer() {
         <div>
           <h2 className="mb-3 text-sm font-bold uppercase tracking-wider text-white">Contact</h2>
           <address className="space-y-2 not-italic">
-            <a href={`tel:${companyInfo.phone.replace(/\s/g, '')}`} className={`${linkClass} gap-2`}><Phone className="h-4 w-4 shrink-0" />{companyInfo.phone}</a>
-            <a href={`mailto:${companyInfo.email}`} className={`${linkClass} gap-2`}><Mail className="h-4 w-4 shrink-0" />{companyInfo.email}</a>
+            <NavLink to="/contact-us#contact-form" className={`${linkClass} gap-2`}><Phone className="h-4 w-4 shrink-0" />{companyInfo.phone}</NavLink>
+            <NavLink to="/contact-us#contact-form" className={`${linkClass} gap-2`}><Mail className="h-4 w-4 shrink-0" />{companyInfo.email}</NavLink>
             <p className="flex gap-2 pt-2 text-sm leading-relaxed"><MapPin className="mt-1 h-4 w-4 shrink-0 text-[#00E5FF]" />{companyInfo.address}</p>
           </address>
         </div>

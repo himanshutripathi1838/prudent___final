@@ -405,6 +405,7 @@ html.light .bg-\[\#060B12\],
 html.light .bg-\[\#04070D\],
 html.light .bg-\[\#0B0F17\],
 html.light .bg-\[\#05080E\],
+html.light .bg-\[\#050507\],
 html.light .bg-\[\#000000\],
 html.light .bg-slate-950,
 html.light .bg-slate-900,
@@ -414,6 +415,9 @@ html.light .bg-black {
 
 /* Cards & Elevated Containers */
 html.light .bg-\[\#0E1522\],
+html.light .bg-\[\#121824\],
+html.light .bg-\[\#0D121B\],
+html.light .bg-\[\#09111F\],
 html.light .bg-\[\#131B2E\],
 html.light .bg-\[\#0F1626\],
 html.light .bg-\[\#1A253E\],
@@ -484,8 +488,14 @@ html.light .border-slate-800\/80,
 html.light .border-slate-700,
 html.light .border-slate-700\/80,
 html.light .border-\[\#1E293B\],
-html.light .border-\[\#1E293B\]\/60 {
+html.light .border-\[\#1E293B\]\/60,
+html.light .border-\[\#1E2D4A\] {
   border-color: #E2E8F0 !important;
+}
+
+html.light .shadow-xl,
+html.light .shadow-2xl {
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08) !important;
 }
 
 /* Form Inputs, Selects, & Textareas */
