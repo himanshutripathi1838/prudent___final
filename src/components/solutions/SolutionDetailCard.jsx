@@ -1,8 +1,8 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Activity, CheckCircle2, Cloud, Cpu, Droplets, Factory, GitBranch, Radio, Train, Zap } from 'lucide-react';
+import { Activity, CheckCircle2, Cloud, Cpu, Droplets, Factory, GitBranch, Radio, TrainFront, Zap } from 'lucide-react';
 
-const solutionIcons = { Activity, Droplets, Factory, GitBranch, Train, Zap };
+const solutionIcons = { Activity, Droplets, Factory, GitBranch, Train: TrainFront, Zap };
 
 export default function SolutionDetailCard({ solution, index }) {
   const IconComp = solutionIcons[solution.icon] || Cpu;
@@ -21,8 +21,8 @@ export default function SolutionDetailCard({ solution, index }) {
           className={`space-y-6 ${isEven ? 'lg:col-span-7' : 'lg:col-span-7 lg:order-2'}`}
         >
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-[#00C2CB]/10 border border-[#00C2CB]/30 flex items-center justify-center text-[#00C2CB]">
-              <IconComp className="w-5 h-5" />
+            <div className="solution-type-icon flex h-11 w-11 items-center justify-center rounded-xl bg-[#00C2CB] text-slate-950 shadow-md shadow-[#00C2CB]/25">
+              <IconComp className="h-5 w-5" strokeWidth={2.5} aria-hidden="true" />
             </div>
             <span className="px-3 py-1 rounded-full text-xs font-mono font-semibold uppercase bg-slate-800 text-slate-300 border border-slate-700">
               {solution.category}
