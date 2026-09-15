@@ -17,6 +17,12 @@
 
 html {
   scroll-behavior: smooth;
+  --horizon-bright: #ffffff;
+  --horizon-bright-shadow: #ffffffb5;
+  --horizon-violet: #a558fb;
+  --horizon-indigo: #4922e5;
+  --horizon-base: rgba(11, 15, 23, 0.85);
+  --page-header-wave-fill: #0a0e14;
 }
 
 body {
@@ -301,6 +307,12 @@ body {
 
 html.light {
   color-scheme: light;
+  --horizon-bright: rgba(255, 255, 255, 0.95);
+  --horizon-bright-shadow: rgba(14, 165, 233, 0.22);
+  --horizon-violet: rgba(167, 139, 250, 0.38);
+  --horizon-indigo: rgba(14, 165, 233, 0.26);
+  --horizon-base: rgba(239, 246, 255, 0.84);
+  --page-header-wave-fill: #f8fafc;
 }
 
 html.light body {
@@ -491,6 +503,14 @@ html.light .border-\[\#1E293B\],
 html.light .border-\[\#1E293B\]\/60,
 html.light .border-\[\#1E2D4A\] {
   border-color: #E2E8F0 !important;
+}
+
+html.light .page-header {
+  background: linear-gradient(135deg, #f8fbff 0%, #eef7ff 55%, #f5f3ff 100%) !important;
+}
+
+html.light .page-header-content {
+  filter: none !important;
 }
 
 html.light .shadow-xl,

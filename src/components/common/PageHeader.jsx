@@ -6,7 +6,7 @@ import GlowHorizon from './GlowHorizon';
 
 export default function PageHeader({ title, subtitle, category, breadcrumbs = [] }) {
   return (
-    <div className="relative bg-[#050507] pt-12 sm:pt-20 pb-24 sm:pb-28 lg:pt-28 lg:pb-36 overflow-hidden">
+    <div className="page-header relative bg-[#050507] pt-12 sm:pt-20 pb-24 sm:pb-28 lg:pt-28 lg:pb-36 overflow-hidden">
       
       {/* GLOW HORIZON BACKGROUND EFFECT */}
       <GlowHorizon variant="top" />
@@ -41,7 +41,7 @@ export default function PageHeader({ title, subtitle, category, breadcrumbs = []
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-          className="max-w-3xl space-y-4 drop-shadow-[0_4px_20px_rgba(0,0,0,0.9)]"
+          className="page-header-content max-w-3xl space-y-4 drop-shadow-[0_4px_20px_rgba(0,0,0,0.9)]"
         >
           {category && (
             <span className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full text-xs font-semibold font-mono uppercase tracking-wider bg-[#00E5FF]/10 text-[#00E5FF] border border-[#00E5FF]/40 backdrop-blur-md shadow-lg shadow-[#00E5FF]/10">
@@ -78,8 +78,8 @@ export default function PageHeader({ title, subtitle, category, breadcrumbs = []
               <stop offset="100%" stopColor="#00E5FF" />
             </linearGradient>
             <linearGradient id="userWaveFill" x1="0%" y1="0%" x2="0%" y2="100%">
-              <stop offset="0%" stopColor="#0A0E14" stopOpacity="0.9" />
-              <stop offset="100%" stopColor="#0A0E14" stopOpacity="1" />
+              <stop offset="0%" stopColor="var(--page-header-wave-fill)" stopOpacity="0.9" />
+              <stop offset="100%" stopColor="var(--page-header-wave-fill)" stopOpacity="1" />
             </linearGradient>
           </defs>
 
