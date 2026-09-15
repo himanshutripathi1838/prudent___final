@@ -1,4 +1,5 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 import { NavLink } from 'react-router-dom';
 import { Mail, MapPin, Phone, Store } from 'lucide-react';
 import { companyInfo } from '../../data/companyData';
@@ -7,7 +8,7 @@ import { LinkedinIcon } from '../common/SocialIcons';
 const linkClass = 'inline-flex min-h-11 items-center text-sm text-slate-300 transition-colors hover:text-[#00E5FF]';
 
 export default function Footer() {
-  return <footer className="relative overflow-hidden border-t border-[#1E293B] bg-[#04070D] text-slate-400">
+  return <motion.footer initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.08 }} transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }} className="relative overflow-hidden border-t border-[#1E293B] bg-[#04070D] text-slate-400">
     <div className="absolute inset-0 bg-cyber-grid opacity-15" aria-hidden="true" />
     <div className="relative z-10 mx-auto max-w-7xl space-y-12 px-4 py-14 sm:px-6 lg:px-8 lg:py-16">
       <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-4">
@@ -41,5 +42,5 @@ export default function Footer() {
       </div>
       <div className="border-t border-slate-800 pt-7 text-center text-xs sm:text-left">© 2026 Prudent Systems Pvt. Ltd. All rights reserved.</div>
     </div>
-  </footer>;
+  </motion.footer>;
 }

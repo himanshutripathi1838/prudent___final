@@ -1,4 +1,5 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import PageHeader from '../components/common/PageHeader';
 import SolutionDetailCard from '../components/solutions/SolutionDetailCard';
@@ -23,7 +24,7 @@ export default function SolutionPortfolio() {
       />
 
       {/* 2. Platform Intro Banner */}
-      <section className="py-12 bg-[#0D121B] border-b border-[#1E293B]">
+      <motion.section initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.2 }} transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }} className="py-12 bg-[#0D121B] border-b border-[#1E293B]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="p-6 sm:p-8 rounded-2xl bg-[#121824] border border-[#00C2CB]/30 flex flex-col md:flex-row items-center justify-between gap-6 shadow-xl">
             <div className="flex items-center gap-4">
@@ -41,7 +42,7 @@ export default function SolutionPortfolio() {
             </div>
           </div>
         </div>
-      </section>
+      </motion.section>
 
       {/* 3. Alternating Solution Blocks */}
       <section className="py-16 bg-[#0A0E14]">
@@ -56,7 +57,7 @@ export default function SolutionPortfolio() {
       <SolutionsComparisonTable />
 
       {/* 5. Custom Solution CTA */}
-      <section className="py-20 bg-[#0D121B] border-t border-[#1E293B]">
+      <motion.section initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.16 }} transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }} className="py-20 bg-[#0D121B] border-t border-[#1E293B]">
         <div className="max-w-4xl mx-auto px-4 text-center space-y-6">
           <span className="px-3 py-1 rounded-full text-xs font-mono font-bold bg-[#00C2CB]/20 text-[#00C2CB] border border-[#00C2CB]/40 uppercase">
             OEM & Custom Engineering
@@ -77,7 +78,7 @@ export default function SolutionPortfolio() {
             </button>
           </div>
         </div>
-      </section>
+      </motion.section>
 
     </div>
   );

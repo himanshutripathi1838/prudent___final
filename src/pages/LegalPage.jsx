@@ -1,4 +1,5 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 import PageHeader from '../components/common/PageHeader';
 import Seo from '../components/common/Seo';
 import { companyInfo } from '../data/companyData';
@@ -42,7 +43,7 @@ export default function LegalPage({ type }) {
     <PageHeader title={page.title} category="Website Information" subtitle={page.description} breadcrumbs={[{ name: page.title }]} />
     <main className="mx-auto max-w-4xl space-y-8 px-4 py-16 sm:px-6 lg:px-8">
       <p className="text-sm text-slate-400">Last updated: 15 September 2026</p>
-      {page.sections.map(([heading, body]) => <section key={heading} className="rounded-2xl border border-slate-800 bg-[#121824] p-5 sm:p-7"><h2 className="mb-3 text-xl font-bold text-white">{heading}</h2><p className="leading-relaxed text-slate-300">{body}</p></section>)}
+      {page.sections.map(([heading, body], index) => <motion.section key={heading} initial={{ opacity: 0, y: 22 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.15 }} transition={{ duration: 0.42, delay: Math.min(index * 0.035, 0.18), ease: [0.22, 1, 0.36, 1] }} className="rounded-2xl border border-slate-800 bg-[#121824] p-5 sm:p-7"><h2 className="mb-3 text-xl font-bold text-white">{heading}</h2><p className="leading-relaxed text-slate-300">{body}</p></motion.section>)}
     </main>
   </div>;
 }

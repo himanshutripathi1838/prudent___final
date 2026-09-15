@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { motion } from 'framer-motion';
 import SectionHeading from '../common/SectionHeading';
 import { applicationsComparison } from '../../data/solutionsData';
 import { Search, Radio, Cpu, Cloud, CheckCircle2 } from 'lucide-react';
@@ -14,7 +15,7 @@ export default function SolutionsComparisonTable() {
   );
 
   return (
-    <section className="py-20 bg-[#0A0E14] relative">
+    <motion.section initial={{ opacity: 0, y: 32 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.1 }} transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }} className="py-20 bg-[#0A0E14] relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeading
           category="Matrix Overview"
@@ -123,6 +124,6 @@ export default function SolutionsComparisonTable() {
         </div>
 
       </div>
-    </section>
+    </motion.section>
   );
 }

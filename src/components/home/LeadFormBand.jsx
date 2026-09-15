@@ -1,10 +1,11 @@
 import React from 'react';
 import { ArrowRight, Mail } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import { motion } from 'framer-motion';
 
 export default function LeadFormBand() {
   const navigate = useNavigate();
-  return <section id="contact-cta" className="relative overflow-hidden bg-[#060B12] py-16 sm:py-24">
+  return <motion.section id="contact-cta" initial={{ opacity: 0, y: 28 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.2 }} transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }} className="relative overflow-hidden bg-[#060B12] py-16 sm:py-24">
     <div className="absolute inset-0 bg-cyber-grid opacity-15" aria-hidden="true" />
     <div className="relative z-10 mx-auto max-w-5xl px-4 sm:px-6">
       <div className="rounded-3xl border border-[#00E5FF]/35 bg-[#09111F] p-6 text-center shadow-2xl sm:p-10 lg:p-14">
@@ -17,5 +18,5 @@ export default function LeadFormBand() {
         </div>
       </div>
     </div>
-  </section>;
+  </motion.section>;
 }

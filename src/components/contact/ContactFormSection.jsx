@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { motion } from 'framer-motion';
 import { Clock, Mail, MapPin, Phone, Send, Store } from 'lucide-react';
 import { companyInfo } from '../../data/companyData';
 import { LinkedinIcon } from '../common/SocialIcons';
@@ -29,7 +30,7 @@ export default function ContactFormSection() {
     }
   };
 
-  return <section id="contact-form" className="bg-[#0A0E14] py-16">
+  return <motion.section id="contact-form" initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.12 }} transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }} className="bg-[#0A0E14] py-16">
     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
       <div className="grid grid-cols-1 items-start gap-10 lg:grid-cols-12">
         <div className="rounded-3xl border border-[#1E293B] bg-[#121824] p-5 shadow-2xl sm:p-8 lg:col-span-7">
@@ -63,5 +64,5 @@ export default function ContactFormSection() {
         </div>
       </div>
     </div>
-  </section>;
+  </motion.section>;
 }
