@@ -38,7 +38,7 @@ export default function SolutionsOverviewGrid() {
   ];
 
   return (
-    <section id="solutions" className="py-24 lg:py-32 bg-[#060B12] border-b border-[#1E293B]/60 relative overflow-hidden">
+    <section id="solutions" className="py-24 lg:py-32 bg-slate-50 dark:bg-[#060B12] text-slate-900 dark:text-white border-b border-slate-200 dark:border-[#1E293B]/60 relative overflow-hidden transition-colors duration-300">
       {/* Background Cyber Grid */}
       <div className="absolute inset-0 bg-cyber-grid opacity-15 pointer-events-none" />
 
@@ -52,13 +52,13 @@ export default function SolutionsOverviewGrid() {
           transition={{ duration: 0.5 }}
           className="text-center max-w-3xl mx-auto space-y-3"
         >
-          <span className="uppercase text-[11px] font-mono tracking-[0.15em] text-[#00E5FF] bg-[#00E5FF]/10 px-3.5 py-1 rounded-full border border-[#00E5FF]/30 inline-block font-bold">
+          <span className="uppercase text-[11px] font-mono tracking-[0.15em] text-[#0284C7] dark:text-[#00E5FF] bg-[#0284C7]/10 dark:bg-[#00E5FF]/10 px-3.5 py-1 rounded-full border border-[#0284C7]/30 dark:border-[#00E5FF]/30 inline-block font-bold">
             TURNKEY INDUSTRIAL SOLUTIONS
           </span>
-          <h2 className="text-3xl lg:text-[42px] font-extrabold text-white tracking-tight leading-tight font-sans">
+          <h2 className="text-3xl lg:text-[42px] font-extrabold text-slate-900 dark:text-white tracking-tight leading-tight font-sans">
             Built for Every Industry
           </h2>
-          <p className="text-base text-slate-300 font-normal leading-relaxed">
+          <p className="text-base text-slate-600 dark:text-slate-300 font-normal leading-relaxed">
             Connected sensing and monitoring options for railways, public infrastructure, utilities, and manufacturing.
           </p>
         </motion.div>
@@ -72,31 +72,31 @@ export default function SolutionsOverviewGrid() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: idx * 0.07 }}
-              whileHover={{ y: -6 }}
+              whileHover={{ y: -8, scale: 1.02 }}
               onClick={() => navigate('/solution-portfolio')}
-              className="p-5 rounded-2xl bg-[#0E1522] border border-slate-800 hover:border-[#00E5FF]/40 transition-all duration-300 shadow-xl flex flex-col justify-between group cursor-pointer"
+              className="p-5 rounded-2xl bg-white dark:bg-[#0E1522] border border-slate-200 dark:border-slate-800 hover:border-[#0284C7] dark:hover:border-[#00E5FF]/60 shadow-lg hover:shadow-2xl hover:shadow-cyan-500/10 transition-all duration-300 flex flex-col justify-between group cursor-pointer"
             >
               <div>
-                <div className="relative h-36 rounded-xl overflow-hidden mb-4 border border-slate-800 bg-[#060B12]">
+                <div className="relative h-36 rounded-xl overflow-hidden mb-4 border border-slate-200 dark:border-slate-800 bg-slate-100 dark:bg-[#060B12]">
                   <img src={sol.image} alt={sol.title} loading="lazy" decoding="async" width="480" height="288" className="w-full h-full object-cover group-hover:scale-108 transition-transform duration-500" />
                 </div>
 
-                <span className="text-[9.5px] font-mono text-[#00E5FF] uppercase font-bold tracking-wider block mb-1">
+                <span className="text-[9.5px] font-mono text-[#0284C7] dark:text-[#00E5FF] uppercase font-bold tracking-wider block mb-1">
                   {sol.category}
                 </span>
 
-                <h3 className="text-base font-bold text-white mb-1 group-hover:text-[#00E5FF] transition-colors font-mono">
+                <h3 className="text-base font-bold text-slate-900 dark:text-white mb-1 group-hover:text-[#0284C7] dark:group-hover:text-[#00E5FF] transition-colors font-mono">
                   {sol.title}
                 </h3>
 
-                <p className="text-xs text-slate-300 font-sans leading-relaxed">
+                <p className="text-xs text-slate-600 dark:text-slate-300 font-sans leading-relaxed">
                   {sol.desc}
                 </p>
               </div>
 
-              <div className="pt-3 mt-4 border-t border-slate-800/80 flex items-center justify-between text-xs font-mono text-[#00E5FF] font-bold">
+              <div className="pt-3 mt-4 border-t border-slate-100 dark:border-slate-800/80 flex items-center justify-between text-xs font-mono text-[#0284C7] dark:text-[#00E5FF] font-bold">
                 <span>View Details</span>
-                <ArrowRight className="w-3.5 h-3.5 text-[#F2A623]" />
+                <ArrowRight className="w-3.5 h-3.5 text-[#F2A623] group-hover:translate-x-1.5 transition-transform duration-300" />
               </div>
             </motion.div>
           ))}
@@ -106,10 +106,10 @@ export default function SolutionsOverviewGrid() {
         <div className="text-center pt-2">
           <button
             onClick={() => navigate('/solution-portfolio')}
-            className="px-6 py-2.5 rounded-full bg-[#0E1522] hover:bg-[#00E5FF]/15 border border-slate-800 hover:border-[#00E5FF] text-white text-xs font-mono font-bold transition-all inline-flex items-center gap-2 cursor-pointer"
+            className="px-6 py-2.5 rounded-full bg-white dark:bg-[#0E1522] hover:bg-slate-100 dark:hover:bg-[#00E5FF]/15 border border-slate-200 dark:border-slate-800 hover:border-[#0284C7] dark:hover:border-[#00E5FF] text-slate-900 dark:text-white text-xs font-mono font-bold transition-all shadow-md inline-flex items-center gap-2 cursor-pointer"
           >
             <span>Explore All Industrial Solutions</span>
-            <ArrowRight className="w-3.5 h-3.5 text-[#00E5FF]" />
+            <ArrowRight className="w-3.5 h-3.5 text-[#0284C7] dark:text-[#00E5FF]" />
           </button>
         </div>
 
