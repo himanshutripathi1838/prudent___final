@@ -1,19 +1,14 @@
-import React, { useState, useRef } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useRef } from 'react';
 import { motion, useScroll, useSpring } from 'framer-motion';
 import InfiniteParallaxSlider from '../components/home/InfiniteParallaxSlider';
 import HomeAboutSection from '../components/home/HomeAboutSection';
 import HomeHowWeWorkSection from '../components/home/HomeHowWeWorkSection';
 import SolutionsOverviewGrid from '../components/home/SolutionsOverviewGrid';
 import SimpleScalablePowerfulSection from '../components/home/SimpleScalablePowerfulSection';
-import OurClientsSection from '../components/home/OurClientsSection';
-import HomeTechnicalExpertiseSection from '../components/home/HomeTechnicalExpertiseSection';
 import LeadFormBand from '../components/home/LeadFormBand';
-import Modal from '../components/common/Modal';
+import Seo from '../components/common/Seo';
 
 export default function Home() {
-  const navigate = useNavigate();
-  const [demoModalOpen, setDemoModalOpen] = useState(false);
   const aboutSectionRef = useRef(null);
 
   // Scroll Progress Bar Animation
@@ -48,6 +43,7 @@ export default function Home() {
 
   return (
     <div className="relative min-h-screen bg-[#0B0F17] text-slate-100 overflow-hidden font-sans">
+      <Seo title="Prudent Systems Pvt. Ltd. | Industrial IoT & Engineering Solutions" description="Industrial IoT, IoT/M2M, sensing, monitoring, automation and engineering solutions from Prudent Systems." path="/" />
       
       {/* Scroll Progress Bar at Top */}
       <motion.div
@@ -58,7 +54,7 @@ export default function Home() {
       {/* 1. FULLSCREEN 100VH INFINITE PARALLAX SLIDER HERO SECTION */}
       <section className="relative w-full overflow-hidden border-b border-[#1E2D4A]">
         <InfiniteParallaxSlider
-          onDemoRequest={() => setDemoModalOpen(true)}
+          onDemoRequest={() => window.location.assign('/contact-us#contact-form')}
           onScrollDownNext={scrollToAboutSection}
         />
       </section>
@@ -105,26 +101,6 @@ export default function Home() {
         <SimpleScalablePowerfulSection />
       </motion.div>
 
-      {/* 6. OUR CLIENTS & ENTERPRISE PARTNERS */}
-      <motion.div
-        variants={sectionVariants}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, margin: "-80px" }}
-      >
-        <OurClientsSection />
-      </motion.div>
-
-      {/* 7. TECHNICAL EXPERTISE */}
-      <motion.div
-        variants={sectionVariants}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, margin: "-80px" }}
-      >
-        <HomeTechnicalExpertiseSection />
-      </motion.div>
-
       {/* 8. CONTACT FORM & LEAD BAND */}
       <motion.div
         variants={sectionVariants}
@@ -134,26 +110,6 @@ export default function Home() {
       >
         <LeadFormBand />
       </motion.div>
-
-      {/* Quick Demo Modal */}
-      <Modal
-        isOpen={demoModalOpen}
-        onClose={() => setDemoModalOpen(false)}
-        title="Schedule a Live Demonstration"
-      >
-        <p className="text-sm text-slate-300 mb-4 font-normal">
-          Experience our Universal IIoT Gateway telemetry dashboard live with custom sensor specifications.
-        </p>
-        <button
-          onClick={() => {
-            setDemoModalOpen(false);
-            navigate('/contact-us');
-          }}
-          className="w-full py-3.5 rounded-xl bg-[#00E5FF] hover:bg-[#52F1FF] text-slate-950 font-bold transition-all text-sm shadow-lg shadow-[#00E5FF]/25"
-        >
-          Go to Contact Page
-        </button>
-      </Modal>
 
     </div>
   );

@@ -9,22 +9,22 @@ export default function SimpleScalablePowerfulSection() {
   const steps = [
     {
       title: "Connect",
-      desc: "Connect your devices and sensors in minutes.",
+      desc: "Connect the devices and sensors required by your application.",
       icon: Wifi
     },
     {
       title: "Collect",
-      desc: "Securely collect and transmit data to the cloud.",
+      desc: "Collect and transmit field data to the selected platform.",
       icon: Server
     },
     {
       title: "Analyze",
-      desc: "AI/ML models analyze data in real-time.",
+      desc: "Analyze measurements, trends and operational events.",
       icon: Brain
     },
     {
       title: "Act",
-      desc: "Take action and maximize efficiency.",
+      desc: "Use clear information to support operational action.",
       icon: Zap
     }
   ];

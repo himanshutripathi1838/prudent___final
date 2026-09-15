@@ -1,10 +1,11 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import * as Icons from 'lucide-react';
-import { CheckCircle2, Cpu, Cloud, Radio, ArrowRight } from 'lucide-react';
+import { Activity, CheckCircle2, Cloud, Cpu, Droplets, Factory, GitBranch, Radio, Train, Zap } from 'lucide-react';
+
+const solutionIcons = { Activity, Droplets, Factory, GitBranch, Train, Zap };
 
 export default function SolutionDetailCard({ solution, index }) {
-  const IconComp = Icons[solution.icon] || Icons.Cpu;
+  const IconComp = solutionIcons[solution.icon] || Cpu;
   const isEven = index % 2 === 0;
 
   return (

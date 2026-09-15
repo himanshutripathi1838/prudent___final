@@ -3,10 +3,9 @@ import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import PageHeader from '../components/common/PageHeader';
 import SectionHeading from '../components/common/SectionHeading';
-import OtaArchitectureDiagram from '../components/expertise/OtaArchitectureDiagram';
 import SecurityGrid from '../components/expertise/SecurityGrid';
-import EdgeAiCapabilities from '../components/expertise/EdgeAiCapabilities';
 import TechBadge from '../components/common/TechBadge';
+import Seo from '../components/common/Seo';
 import { capabilityBlocks, techStackBadges } from '../data/expertiseData';
 import { Cpu, Radio, Server, CheckCircle2, ArrowRight } from 'lucide-react';
 
@@ -40,12 +39,13 @@ export default function TechnicalExpertise() {
 
   return (
     <div className="bg-[#0A0E14] text-slate-100 min-h-screen">
+      <Seo title="Technical Expertise | Prudent Systems" description="Explore Prudent Systems capabilities in embedded hardware, industrial communication, sensor integration, software and cloud monitoring." path="/technical-expertise" breadcrumbs={[{ name: 'Technical Expertise', path: '/technical-expertise' }]} />
       
       {/* 1. Page Header Banner */}
       <PageHeader
         title="Technical Expertise & System Architecture"
         category="Full Stack Industrial Engineering"
-        subtitle="End-to-end hardware design, multi-protocol communication daemons, edge AI inferencing, and cloud time-series infrastructure."
+        subtitle="Embedded hardware, industrial communication, sensor integration, software, and cloud monitoring capabilities."
         breadcrumbs={[{ name: 'Technical Expertise' }]}
       />
 
@@ -138,16 +138,6 @@ export default function TechnicalExpertise() {
         </div>
       </section>
 
-      {/* 5. Edge AI Inferencing Capabilities */}
-      <section className="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <EdgeAiCapabilities />
-      </section>
-
-      {/* 6. OTA Firmware & Security Architecture */}
-      <section className="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <OtaArchitectureDiagram />
-      </section>
-
       {/* 7. Security & Reliability Grid */}
       <SecurityGrid />
 
@@ -166,11 +156,11 @@ export default function TechnicalExpertise() {
               Need Custom Hardware or Protocol Integration?
             </h2>
             <p className="text-sm sm:text-base text-slate-300 leading-relaxed mt-2 max-w-2xl mx-auto">
-              Our hardware engineers design custom PCB boards, RS485 Modbus drivers, and localized LoRa gateways for non-standard industrial machinery.
+              Share your hardware, sensor, protocol, and operating requirements with our engineering team.
             </p>
             <div className="pt-6">
               <button
-                onClick={() => navigate('/contact-us')}
+                onClick={() => navigate('/contact-us#contact-form')}
                 className="inline-flex items-center gap-2.5 px-8 py-4 rounded-xl bg-[#00C2CB] hover:bg-[#00E5FF] text-slate-900 font-bold text-base transition-all shadow-xl shadow-[#00C2CB]/25 cursor-pointer hover:scale-105 active:scale-95"
               >
                 <span>Talk to Embedded Hardware Engineers</span>

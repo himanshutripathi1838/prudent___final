@@ -1,239 +1,67 @@
 import React, { useState } from 'react';
-import { motion } from 'framer-motion';
-import { Mail, Phone, MapPin, Clock, Send, CheckCircle2, Sparkles } from 'lucide-react';
+import { Clock, Mail, MapPin, Phone, Send, Store } from 'lucide-react';
 import { companyInfo } from '../../data/companyData';
-import { LinkedinIcon, TwitterIcon, GithubIcon, YoutubeIcon } from '../common/SocialIcons';
+import { LinkedinIcon } from '../common/SocialIcons';
 
-export default function ContactFormSection({ onRequestDemo }) {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    subject: 'General Inquiry',
-    message: ''
-  });
-  const [submitted, setSubmitted] = useState(false);
+const initialForm = { name: '', email: '', phone: '', subject: 'General Inquiry', message: '' };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log('Contact Form Data Submitted:', formData);
-    setSubmitted(true);
-    setTimeout(() => {
-      setSubmitted(false);
-      setFormData({ name: '', email: '', phone: '', subject: 'General Inquiry', message: '' });
-    }, 3500);
+export default function ContactFormSection() {
+  const [formData, setFormData] = useState(initialForm);
+  const [status, setStatus] = useState('idle');
+  const [feedback, setFeedback] = useState('');
+  const update = event => setFormData(current => ({ ...current, [event.target.name]: event.target.value }));
+
+  const handleSubmit = async event => {
+    event.preventDefault();
+    if (status === 'loading') return;
+    setStatus('loading');
+    setFeedback('');
+    try {
+      const response = await fetch('/api/contact', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(formData) });
+      const result = await response.json().catch(() => ({}));
+      if (!response.ok) throw new Error(result.error || 'Unable to send your message. Please try again.');
+      setStatus('success');
+      setFeedback('Thank you. Your message has been sent to Prudent Systems.');
+      setFormData(initialForm);
+    } catch (error) {
+      setStatus('error');
+      setFeedback(error.message || `Message could not be sent. Please email ${companyInfo.email}.`);
+    }
   };
 
-  return (
-    <section className="py-16 bg-[#0A0E14] relative">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
-        {/* Main 2-Column Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start mb-16">
-          
-          {/* Left: Contact Form Column */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="lg:col-span-7 bg-[#121824] border border-[#1E293B] rounded-3xl p-6 sm:p-10 shadow-2xl"
-          >
-            <div className="mb-6">
-              <h2 className="text-2xl font-extrabold text-white mb-2">Send Us a Message</h2>
-              <p className="text-xs sm:text-sm text-slate-400">
-                Have questions regarding custom gateway integration, pilot testing, or pricing? Fill out the form below.
-              </p>
+  return <section id="contact-form" className="bg-[#0A0E14] py-16">
+    <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div className="grid grid-cols-1 items-start gap-10 lg:grid-cols-12">
+        <div className="rounded-3xl border border-[#1E293B] bg-[#121824] p-5 shadow-2xl sm:p-8 lg:col-span-7">
+          <h2 className="text-2xl font-extrabold text-white">Send Us a Message</h2>
+          <p className="mt-2 text-sm leading-relaxed text-slate-400">Tell us what you need and our team will respond using the contact details you provide.</p>
+          <form onSubmit={handleSubmit} className="mt-7 space-y-5">
+            <div><label htmlFor="contact-name" className="form-label">Full Name *</label><input id="contact-name" name="name" autoComplete="name" required maxLength="120" value={formData.name} onChange={update} className="form-control" /></div>
+            <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
+              <div><label htmlFor="contact-email" className="form-label">Email Address *</label><input id="contact-email" name="email" type="email" autoComplete="email" required maxLength="254" value={formData.email} onChange={update} className="form-control" /></div>
+              <div><label htmlFor="contact-phone" className="form-label">Phone Number</label><input id="contact-phone" name="phone" type="tel" autoComplete="tel" maxLength="30" value={formData.phone} onChange={update} className="form-control" /></div>
             </div>
-
-            {submitted ? (
-              <div className="py-12 text-center space-y-4">
-                <CheckCircle2 className="w-14 h-14 text-[#00C2CB] mx-auto" />
-                <h3 className="text-2xl font-bold text-white">Message Delivered!</h3>
-                <p className="text-sm text-slate-300 max-w-sm mx-auto">
-                  Thank you for reaching out to Prudent Systems. Our technical team will get back to you within 24 business hours.
-                </p>
-              </div>
-            ) : (
-              <form onSubmit={handleSubmit} className="space-y-4">
-                <div>
-                  <label className="block text-xs font-semibold text-slate-400 uppercase mb-1">
-                    Your Full Name *
-                  </label>
-                  <input
-                    type="text"
-                    required
-                    value={formData.name}
-                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    placeholder="Suresh Menon"
-                    className="w-full px-4 py-3 rounded-xl bg-[#0A0E14] border border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:border-[#00C2CB] text-sm"
-                  />
-                </div>
-
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-xs font-semibold text-slate-400 uppercase mb-1">
-                      Email Address *
-                    </label>
-                    <input
-                      type="email"
-                      required
-                      value={formData.email}
-                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      placeholder="suresh@enterprise.com"
-                      className="w-full px-4 py-3 rounded-xl bg-[#0A0E14] border border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:border-[#00C2CB] text-sm"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-xs font-semibold text-slate-400 uppercase mb-1">
-                      Phone Number *
-                    </label>
-                    <input
-                      type="tel"
-                      required
-                      value={formData.phone}
-                      onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                      placeholder="+91 98765 43210"
-                      className="w-full px-4 py-3 rounded-xl bg-[#0A0E14] border border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:border-[#00C2CB] text-sm"
-                    />
-                  </div>
-                </div>
-
-                <div>
-                  <label className="block text-xs font-semibold text-slate-400 uppercase mb-1">
-                    Subject / Area of Interest
-                  </label>
-                  <select
-                    value={formData.subject}
-                    onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
-                    className="w-full px-4 py-3 rounded-xl bg-[#0A0E14] border border-slate-700 text-white focus:outline-none focus:border-[#00C2CB] text-sm"
-                  >
-                    <option value="General Inquiry">General Inquiry</option>
-                    <option value="Universal IIoT Gateway Quotation">Universal IIoT Gateway Quotation</option>
-                    <option value="Railway / OHE Monitoring Platform">Railway / OHE Monitoring Platform</option>
-                    <option value="Bridge Health / Hydrology Monitoring">Bridge Health / Hydrology Monitoring</option>
-                    <option value="Machine Predictive Maintenance">Machine Predictive Maintenance</option>
-                    <option value="Custom Hardware / OEM Engineering">Custom Hardware / OEM Engineering</option>
-                  </select>
-                </div>
-
-                <div>
-                  <label className="block text-xs font-semibold text-slate-400 uppercase mb-1">
-                    Message Details *
-                  </label>
-                  <textarea
-                    rows={4}
-                    required
-                    value={formData.message}
-                    onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                    placeholder="Tell us about your project, target deployment site, or technical specifications..."
-                    className="w-full px-4 py-3 rounded-xl bg-[#0A0E14] border border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:border-[#00C2CB] text-sm resize-none"
-                  ></textarea>
-                </div>
-
-                <button
-                  type="submit"
-                  className="w-full py-3.5 rounded-xl bg-[#00C2CB] hover:bg-[#00E5FF] text-slate-900 font-bold transition-all text-sm shadow-lg shadow-[#00C2CB]/25 flex items-center justify-center gap-2"
-                >
-                  <span>Send Message</span>
-                  <Send className="w-4 h-4" />
-                </button>
-              </form>
-            )}
-          </motion.div>
-
-          {/* Right: Contact Info Cards & Map Placeholder */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.2 }}
-            className="lg:col-span-5 space-y-6"
-          >
-            <div className="p-6 rounded-2xl bg-[#121824] border border-[#1E293B] space-y-4">
-              <h3 className="text-lg font-bold text-white mb-2">Corporate Headquarters</h3>
-              
-              <div className="flex items-start gap-3 text-xs sm:text-sm text-slate-300">
-                <MapPin className="w-5 h-5 text-[#00C2CB] shrink-0 mt-0.5" />
-                <span className="leading-relaxed">{companyInfo.address}</span>
-              </div>
-
-              <div className="flex items-center gap-3 text-xs sm:text-sm text-slate-300">
-                <Phone className="w-5 h-5 text-[#00C2CB] shrink-0" />
-                <span>{companyInfo.phone}</span>
-              </div>
-
-              <div className="flex items-center gap-3 text-xs sm:text-sm text-slate-300">
-                <Mail className="w-5 h-5 text-[#00C2CB] shrink-0" />
-                <div>
-                  <div>Sales: <span className="text-[#00C2CB]">{companyInfo.salesEmail}</span></div>
-                  <div>Support: <span className="text-[#00C2CB]">{companyInfo.supportEmail}</span></div>
-                </div>
-              </div>
-
-              <div className="flex items-center gap-3 text-xs sm:text-sm text-slate-300 border-t border-slate-800 pt-3">
-                <Clock className="w-5 h-5 text-[#00C2CB] shrink-0" />
-                <span>{companyInfo.workingHours}</span>
-              </div>
-            </div>
-
-            {/* Interactive Dark Map Preview Graphic */}
-            <div className="p-4 rounded-2xl bg-[#121824] border border-[#1E293B] relative overflow-hidden">
-              <div className="h-48 rounded-xl bg-[#0A0E14] border border-slate-800 flex flex-col items-center justify-center p-4 text-center relative overflow-hidden">
-                <div className="absolute inset-0 bg-cyber-grid opacity-40" />
-                <MapPin className="w-10 h-10 text-[#00C2CB] animate-bounce z-10" />
-                <div className="z-10 mt-2">
-                  <h4 className="text-sm font-bold text-white">HITEC City R&D Hub</h4>
-                  <p className="text-[11px] font-mono text-slate-400">Hyderabad, Telangana, India</p>
-                </div>
-                <div className="absolute bottom-2 right-2 text-[10px] font-mono text-[#00C2CB] z-10">
-                  GPS: 17.4486° N, 78.3742° E
-                </div>
-              </div>
-            </div>
-
-            {/* Social Links */}
-            <div className="p-4 rounded-2xl bg-[#121824] border border-[#1E293B] flex items-center justify-between">
-              <span className="text-xs font-mono font-bold text-slate-400 uppercase">Connect Socially</span>
-              <div className="flex items-center gap-2">
-                <a href={companyInfo.socials.linkedin} target="_blank" rel="noopener noreferrer" className="p-2 rounded-lg bg-[#0A0E14] hover:text-[#00C2CB] text-slate-400 transition-colors">
-                  <LinkedinIcon className="w-4 h-4" />
-                </a>
-                <a href={companyInfo.socials.twitter} target="_blank" rel="noopener noreferrer" className="p-2 rounded-lg bg-[#0A0E14] hover:text-[#00C2CB] text-slate-400 transition-colors">
-                  <TwitterIcon className="w-4 h-4" />
-                </a>
-                <a href={companyInfo.socials.github} target="_blank" rel="noopener noreferrer" className="p-2 rounded-lg bg-[#0A0E14] hover:text-[#00C2CB] text-slate-400 transition-colors">
-                  <GithubIcon className="w-4 h-4" />
-                </a>
-                <a href={companyInfo.socials.youtube} target="_blank" rel="noopener noreferrer" className="p-2 rounded-lg bg-[#0A0E14] hover:text-[#00C2CB] text-slate-400 transition-colors">
-                  <YoutubeIcon className="w-4 h-4" />
-                </a>
-              </div>
-            </div>
-
-          </motion.div>
-
+            <div><label htmlFor="contact-subject" className="form-label">Subject *</label><select id="contact-subject" name="subject" required value={formData.subject} onChange={update} className="form-control"><option>General Inquiry</option><option>Industrial IoT Solution</option><option>Sensor & Data Acquisition</option><option>Industrial Monitoring</option><option>Custom Engineering</option></select></div>
+            <div><label htmlFor="contact-message" className="form-label">Message *</label><textarea id="contact-message" name="message" rows="5" required minLength="10" maxLength="5000" value={formData.message} onChange={update} className="form-control resize-y" /></div>
+            {feedback && <p role="status" aria-live="polite" className={`rounded-xl border p-3 text-sm ${status === 'success' ? 'border-emerald-500/40 bg-emerald-500/10 text-emerald-300' : 'border-red-500/40 bg-red-500/10 text-red-300'}`}>{feedback}</p>}
+            <button type="submit" disabled={status === 'loading'} className="flex min-h-12 w-full items-center justify-center gap-2 rounded-xl bg-[#00E5FF] px-6 py-3 font-bold text-slate-950 disabled:cursor-not-allowed disabled:opacity-50"><span>{status === 'loading' ? 'Sending...' : 'Send Message'}</span><Send className="h-4 w-4" /></button>
+          </form>
         </div>
 
-        {/* Request Demo Banner above Footer */}
-        <div className="p-8 sm:p-10 rounded-3xl bg-gradient-to-r from-[#121824] via-[#0A0E14] to-[#121824] border border-[#00C2CB]/40 shadow-2xl flex flex-col sm:flex-row items-center justify-between gap-6">
-          <div className="space-y-1 text-center sm:text-left">
-            <h3 className="text-xl sm:text-2xl font-bold text-white flex items-center gap-2 justify-center sm:justify-start">
-              <Sparkles className="w-5 h-5 text-[#00C2CB]" />
-              Schedule a Tailored Demonstration
-            </h3>
-            <p className="text-xs sm:text-sm text-slate-400">
-              See our Universal IIoT Gateway & Edge AI algorithms live in action with custom sensor datasets.
-            </p>
+        <div className="space-y-6 lg:col-span-5">
+          <div className="rounded-2xl border border-[#1E293B] bg-[#121824] p-6">
+            <h2 className="mb-5 text-xl font-bold text-white">Contact Details</h2>
+            <address className="space-y-5 not-italic text-sm text-slate-300">
+              <p className="flex gap-3"><MapPin className="mt-0.5 h-5 w-5 shrink-0 text-[#00E5FF]" />{companyInfo.address}</p>
+              <a href={`tel:${companyInfo.phone.replace(/\s/g, '')}`} className="flex min-h-11 items-center gap-3 hover:text-[#00E5FF]"><Phone className="h-5 w-5 text-[#00E5FF]" />{companyInfo.phone}</a>
+              <a href={`mailto:${companyInfo.email}`} className="flex min-h-11 items-center gap-3 hover:text-[#00E5FF]"><Mail className="h-5 w-5 text-[#00E5FF]" />{companyInfo.email}</a>
+              <p className="flex gap-3"><Clock className="h-5 w-5 shrink-0 text-[#00E5FF]" />{companyInfo.workingHours}</p>
+            </address>
           </div>
-          <button
-            onClick={onRequestDemo}
-            className="px-6 py-3 rounded-xl bg-[#00C2CB] hover:bg-[#00E5FF] text-slate-900 font-bold text-sm transition-all shadow-lg shadow-[#00C2CB]/25 shrink-0"
-          >
-            Request Live Demo
-          </button>
+          <iframe title="Prudent Systems office at 18 Vaishali Nagar, Bhopal" src="https://www.google.com/maps?q=18%2C%20Vaishali%20Nagar%2C%20Kotra%20Sultanabad%2C%20Bhopal%20462003&output=embed" loading="lazy" referrerPolicy="no-referrer-when-downgrade" className="h-72 w-full rounded-2xl border border-[#1E293B]" />
+          <div className="flex gap-3"><a href={companyInfo.socials.linkedin} target="_blank" rel="noopener noreferrer" className="social-link"><LinkedinIcon className="h-5 w-5" />LinkedIn</a><a href={companyInfo.socials.indiamart} target="_blank" rel="noopener noreferrer" className="social-link"><Store className="h-5 w-5" />IndiaMART</a></div>
         </div>
-
       </div>
-    </section>
-  );
+    </div>
+  </section>;
 }

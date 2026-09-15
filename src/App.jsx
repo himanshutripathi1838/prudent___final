@@ -7,6 +7,7 @@ import SolutionPortfolio from './pages/SolutionPortfolio';
 import TechnicalExpertise from './pages/TechnicalExpertise';
 import Career from './pages/Career';
 import ContactUs from './pages/ContactUs';
+import LegalPage from './pages/LegalPage';
 
 export default function App() {
   return (
@@ -18,6 +19,8 @@ export default function App() {
         <Route path="technical-expertise" element={<TechnicalExpertise />} />
         <Route path="career" element={<Career />} />
         <Route path="contact-us" element={<ContactUs />} />
+        <Route path="privacy-policy" element={<LegalPage type="privacy" />} />
+        <Route path="terms-and-conditions" element={<LegalPage type="terms" />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Route>
     </Routes>

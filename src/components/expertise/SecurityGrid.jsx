@@ -1,21 +1,23 @@
 import React from 'react';
 import SectionHeading from '../common/SectionHeading';
 import { securityFeatures } from '../../data/expertiseData';
-import * as Icons from 'lucide-react';
+import { FileCheck, Lock, ShieldCheck } from 'lucide-react';
+
+const securityIcons = { FileCheck, Lock, ShieldCheck };
 
 export default function SecurityGrid() {
   return (
     <section className="py-20 bg-[#0A0E14] relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeading
-          category="Hardware-Enforced Protection"
-          title="Zero-Trust Industrial Security"
-          subtitle="Protecting critical infrastructure telecommunication vectors against physical tampering, unauthorized firmware, and cyber intrusion."
+          category="System Protection"
+          title="Security Considerations"
+          subtitle="Practical controls for access, data transport, validation and operational visibility."
         />
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {securityFeatures.map((sec, idx) => {
-            const IconComp = Icons[sec.icon] || Icons.ShieldCheck;
+            const IconComp = securityIcons[sec.icon] || ShieldCheck;
             return (
               <div
                 key={idx}

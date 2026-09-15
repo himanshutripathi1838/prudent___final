@@ -9,31 +9,31 @@ export default function SolutionsOverviewGrid() {
   const solutions = [
     {
       id: "cnc",
-      title: "Smart CNC & Forge Factory Health",
+      title: "Manufacturing Monitoring",
       category: "SMART MANUFACTURING",
       image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=1964&auto=format&fit=crop",
-      desc: "Motor vibration spectrographs & predictive thermal monitoring."
+      desc: "Machine, process, vibration, and temperature monitoring options."
     },
     {
       id: "railway-track",
       title: "Railway Track & Wheel Monitoring",
       category: "RAILWAY INFRASTRUCTURE",
       image: "https://images.unsplash.com/photo-1474487548417-781cb71495f3?q=80&w=1887&auto=format&fit=crop",
-      desc: "Trackside vibration IMUs & wheel-flat impact sensors."
+      desc: "Condition monitoring options for railway track and wheel applications."
     },
     {
       id: "ohe",
-      title: "OHE Pantograph Spark Monitoring",
+      title: "Rail Electrification Monitoring",
       category: "RAIL ELECTRIFICATION",
       image: "https://images.unsplash.com/photo-1541427468627-a89a96e5ca1d?q=80&w=1770&auto=format&fit=crop",
-      desc: "High-speed optical spark sensing & catenary wire alignment."
+      desc: "Event and condition sensing options for electrical assets."
     },
     {
       id: "bridge",
       title: "Bridge Structural Health Monitoring",
       category: "CIVIL INFRASTRUCTURE",
       image: "https://images.unsplash.com/photo-1545558014-8692077e9b5c?q=80&w=1964&auto=format&fit=crop",
-      desc: "Sub-arcsec tilt sensors & pier vibration telemetry."
+      desc: "Level, tilt, vibration, and environmental monitoring options."
     }
   ];
 
@@ -59,7 +59,7 @@ export default function SolutionsOverviewGrid() {
             Built for Every Industry
           </h2>
           <p className="text-base text-slate-300 font-normal leading-relaxed">
-            Pre-engineered sensor-to-cloud platforms tailored for railways, public infrastructure, utilities, and smart factories.
+            Connected sensing and monitoring options for railways, public infrastructure, utilities, and manufacturing.
           </p>
         </motion.div>
 
@@ -78,7 +78,7 @@ export default function SolutionsOverviewGrid() {
             >
               <div>
                 <div className="relative h-36 rounded-xl overflow-hidden mb-4 border border-slate-800 bg-[#060B12]">
-                  <img src={sol.image} alt={sol.title} className="w-full h-full object-cover group-hover:scale-108 transition-transform duration-500" />
+                  <img src={sol.image} alt={sol.title} loading="lazy" decoding="async" width="480" height="288" className="w-full h-full object-cover group-hover:scale-108 transition-transform duration-500" />
                 </div>
 
                 <span className="text-[9.5px] font-mono text-[#00E5FF] uppercase font-bold tracking-wider block mb-1">

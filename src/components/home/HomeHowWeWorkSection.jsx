@@ -21,15 +21,15 @@ export default function HomeHowWeWorkSection() {
       subtitle: "Signal Acquisition",
       icon: Cpu,
       accent: "from-amber-400 to-orange-500",
-      items: ["Signal", "Acquisition", "24-Bit ADC"]
+      items: ["Signal", "Acquisition", "Validation"]
     },
     {
       id: "03",
       title: "EDGE GATEWAY",
-      subtitle: "Edge AI Processing",
+      subtitle: "Local Processing",
       icon: Server,
       accent: "from-emerald-400 to-teal-500",
-      items: ["Edge AI", "Local Process", "<50ms Engine"]
+      items: ["Local Logic", "Data Buffer", "Protocol Bridge"]
     },
     {
       id: "04",
@@ -41,19 +41,19 @@ export default function HomeHowWeWorkSection() {
     },
     {
       id: "05",
-      title: "AI ANALYTICS",
-      subtitle: "Anomaly Prediction",
+      title: "ANALYTICS",
+      subtitle: "Data Analysis",
       icon: Brain,
       accent: "from-purple-400 to-indigo-500",
-      items: ["Anomaly", "Prediction", "RUL Forecast"]
+      items: ["Trends", "Events", "Reports"]
     },
     {
       id: "06",
       title: "DASHBOARD & ALERTS",
-      subtitle: "SMS • WhatsApp",
+      subtitle: "Views & Notifications",
       icon: Bell,
       accent: "from-rose-400 to-red-500",
-      items: ["SMS • WhatsApp", "Live SCADA", "PLC Auto-Trip"]
+      items: ["Dashboards", "Notifications", "System Integration"]
     }
   ];
 
@@ -194,7 +194,7 @@ export default function HomeHowWeWorkSection() {
             <span className="text-[#00E5FF]">⚡ ▶</span>
             <span className="text-[#00E5FF]">CLOUD</span>
             <span className="text-[#00E5FF]">⚡ ▶</span>
-            <span className="text-[#00E5FF]">AI ANALYTICS</span>
+            <span className="text-[#00E5FF]">ANALYTICS</span>
             <span className="text-[#00E5FF]">⚡ ▶</span>
             <span className="text-[#F2A623] font-extrabold">
               DASHBOARD & ALERTS

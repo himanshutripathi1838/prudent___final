@@ -5,18 +5,20 @@ import SolutionDetailCard from '../components/solutions/SolutionDetailCard';
 import SolutionsComparisonTable from '../components/solutions/SolutionsComparisonTable';
 import { solutionsList } from '../data/solutionsData';
 import { Cpu, ArrowRight } from 'lucide-react';
+import Seo from '../components/common/Seo';
 
 export default function SolutionPortfolio() {
   const navigate = useNavigate();
 
   return (
     <div className="bg-[#0A0E14] text-slate-100 min-h-screen">
+      <Seo title="Industrial IoT Solutions | Prudent Systems" description="Explore industrial monitoring, sensing, data acquisition and automation solutions from Prudent Systems." path="/solution-portfolio" breadcrumbs={[{ name: 'Solutions', path: '/solution-portfolio' }]} />
       
       {/* 1. Page Header Banner */}
       <PageHeader
         title="Our Industrial Solution Portfolio"
         category="Multi-Industry Monitoring Platforms"
-        subtitle="Powered by a unified Universal IIoT Gateway platform — delivering sensor-to-cloud intelligence for Railways, Bridge Infrastructure, Water, Weather, and Manufacturing."
+        subtitle="Connected sensing and monitoring solutions for railways, civil infrastructure, water, weather, and manufacturing applications."
         breadcrumbs={[{ name: 'Solution Portfolio' }]}
       />
 
@@ -33,7 +35,7 @@ export default function SolutionPortfolio() {
                   Unified Platform Architecture
                 </h3>
                 <p className="text-xs sm:text-sm text-slate-300">
-                  Every solution below is built on Prudent Systems' single scalable hardware core (Prudent Gate-200X) — standardizing spare parts, maintenance, and cloud telemetry across all your industrial sites.
+                  Solution architecture can be adapted to the sensing, connectivity, data, and operating needs of each industrial site.
                 </p>
               </div>
             </div>
@@ -63,11 +65,11 @@ export default function SolutionPortfolio() {
             Need a Custom Monitoring Solution?
           </h2>
           <p className="text-sm sm:text-base text-slate-300 leading-relaxed">
-            Have proprietary sensors, non-standard fieldbus protocols, or specialized mounting requirements? Our hardware and firmware engineering teams build custom OEM solutions tailored to your exact industrial specifications.
+            Share your sensors, communication protocols, mounting needs, and operating environment with our engineering team.
           </p>
           <div className="pt-2">
             <button
-              onClick={() => navigate('/contact-us')}
+              onClick={() => navigate('/contact-us#contact-form')}
               className="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-[#00C2CB] hover:bg-[#00E5FF] text-slate-900 font-bold text-base transition-all shadow-xl shadow-[#00C2CB]/25"
             >
               <span>Contact Solution Engineers</span>

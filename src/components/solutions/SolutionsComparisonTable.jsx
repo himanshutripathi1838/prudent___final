@@ -19,7 +19,7 @@ export default function SolutionsComparisonTable() {
         <SectionHeading
           category="Matrix Overview"
           title="Applications at a Glance"
-          subtitle="Compare sensor arrays, edge processing capabilities, and cloud telemetry outputs across all industrial monitoring platforms."
+          subtitle="Compare typical sensing, local processing, connectivity, and monitoring outputs across industrial applications."
         />
 
         {/* Search Bar */}

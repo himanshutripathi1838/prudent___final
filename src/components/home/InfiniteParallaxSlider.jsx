@@ -4,59 +4,54 @@ import { ArrowRight, ChevronDown, Cpu } from 'lucide-react';
 
 const PROJECT_DATA = [
   {
-    title: "Prudent Gate-200X",
+    title: "Industrial IoT Platform",
     image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=1964&auto=format&fit=crop",
-    category: "Hardware SOM",
-    year: "2026",
-    description: "Universal IIoT Edge Gateway",
-    badge: "IIoT Gateways • Edge AI • Remote OTA Firmware",
+    category: "Connected Systems",
+    description: "Sensor-to-cloud monitoring",
+    badge: "Industrial IoT • Sensing • Monitoring",
     headlineLine1: "Powering Industry 4.0 —",
     headlineLine2: "From Sensors to Cloud Intelligence",
-    detailText: "Prudent Systems engineers mission-critical IIoT Gateways, Edge AI algorithms, and remote OTA firmware infrastructure for Railways, Civil Infrastructure, Water, Weather, and Manufacturing."
+    detailText: "Prudent Systems develops connected solutions for sensing, data acquisition, monitoring and industrial automation."
   },
   {
-    title: "Railway Vibration",
+    title: "Railway Monitoring",
     image: "https://images.unsplash.com/photo-1474487548417-781cb71495f3?q=80&w=1887&auto=format&fit=crop",
     category: "Rail Infrastructure",
-    year: "2026",
-    description: "Wheel-Flat Defect Telemetry",
-    badge: "Rail Infrastructure • Wheel-Flat Detection • 160km/h",
+    description: "Asset condition telemetry",
+    badge: "Railway Technology • Condition Monitoring",
     headlineLine1: "Precision Railway Telemetry —",
     headlineLine2: "Real-Time Track & Wheel Safety",
-    detailText: "Continuous high-frequency track vibration monitoring, wheel-flat impact detection, and derailment prevention deployed across 450km+ zonal railway corridors."
+    detailText: "Application-specific sensing and communication can provide railway asset condition data for operational teams."
   },
   {
-    title: "Bridge Scour Radar",
+    title: "Infrastructure Monitoring",
     image: "https://images.unsplash.com/photo-1545558014-8692077e9b5c?q=80&w=1964&auto=format&fit=crop",
-    category: "Civil Safety",
-    year: "2026",
-    description: "80GHz Flood Level Sensor",
-    badge: "Civil Infrastructure • 80GHz Radar • Sub-mm Sensing",
-    headlineLine1: "80GHz Radar Bridge Health —",
-    headlineLine2: "Sub-Millimeter Surge Tracking",
-    detailText: "Non-contact radar water level sensors and structural vibration telemetry providing automated early flood warnings during monsoon surges."
+    category: "Civil Infrastructure",
+    description: "Level and condition sensing",
+    badge: "Civil Infrastructure • Level & Condition Sensing",
+    headlineLine1: "Connected Infrastructure —",
+    headlineLine2: "Remote Condition Visibility",
+    detailText: "Level, vibration and environmental measurements can be brought together in a remote monitoring view."
   },
   {
-    title: "Machine Predictive",
+    title: "Machine Monitoring",
     image: "https://images.unsplash.com/photo-1515165562839-978bbcf18277?q=80&w=1887&auto=format&fit=crop",
     category: "Industry 4.0",
-    year: "2026",
-    description: "Edge TFLite Bearing Fault",
-    badge: "Smart Manufacturing • Edge TFLite • Zero Stoppage",
-    headlineLine1: "Edge AI Machine Health —",
-    headlineLine2: "Predict Bearing Faults 14 Days Early",
-    detailText: "Quantized TensorFlow Lite models (bearing_model_v3.tflite) analyzing 10kHz motor vibration spectrographs directly on the edge gateway."
+    description: "Maintenance-focused condition data",
+    badge: "Smart Manufacturing • Machine Condition Data",
+    headlineLine1: "Machine Condition Monitoring —",
+    headlineLine2: "Turn Measurements Into Trends",
+    detailText: "Vibration, temperature and electrical measurements can support maintenance-focused condition monitoring."
   },
   {
-    title: "OHE Spark Arc",
+    title: "Electrical Event Monitoring",
     image: "https://images.unsplash.com/photo-1504608524841-42fe6f032b4b?q=80&w=1896&auto=format&fit=crop",
-    category: "Pantograph Rail",
-    year: "2026",
-    description: "Sub-ms Optical Arc Counter",
-    badge: "Pantograph Rail Safety • Optical Arc • Sub-ms Speed",
-    headlineLine1: "Sub-Millisecond Arc Sensing —",
-    headlineLine2: "Electrified Rail OHE Protection",
-    detailText: "High-speed optical sensors tracking pantograph overhead equipment (OHE) spark arcing to prevent catenary wire damage and catastrophic outages."
+    category: "Electrical Assets",
+    description: "Connected event sensing",
+    badge: "Electrical Assets • Event Monitoring",
+    headlineLine1: "Electrical Event Sensing —",
+    headlineLine2: "Connected Monitoring Workflows",
+    detailText: "Suitable optical and electrical sensors can provide event data for review and maintenance planning."
   }
 ];
 
